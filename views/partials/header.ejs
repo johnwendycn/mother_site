@@ -45,27 +45,97 @@
                                 <!-- Home -->
                                 <li class="current-menu-item"><a href="/">Home</a></li>
 
-                                <!-- MEGA MENU: All requested items except Home, Redirect Mall, Contact Us -->
+                                <!-- SECTORS MEGA MENU -->
                                 <li class="rs-mega-menu mega-rs">
-                                    <a href="#">Explore</a>
+                                    <a href="#">Sectors <i class="fa fa-angle-down"></i></a>
+                                    <ul class="mega-menu">
+                                        <li class="mega-menu-container">
+                                            <div class="mega-menu-innner">
+                                                <!-- Column 1: Residential & Commercial -->
+                                                <div class="single-magemenu">
+                                                    <h4>Residential & Commercial</h4>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="/sectors/residential-buildings">Residential Buildings</a></li>
+                                                        <li><a href="/sectors/apartment-complexes">Apartment Complexes</a></li>
+                                                        <li><a href="/sectors/luxury-villas">Luxury Villas & Estates</a></li>
+                                                        <li><a href="/sectors/office-buildings">Office Buildings</a></li>
+                                                        <li><a href="/sectors/shopping-malls">Shopping Malls & Retail Centers</a></li>
+                                                        <li><a href="/sectors/hotels-resorts">Hotels & Resorts</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Column 2: Industrial & Infrastructure -->
+                                                <div class="single-magemenu">
+                                                    <h4>Industrial & Infrastructure</h4>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="/sectors/industrial-facilities">Industrial Facilities</a></li>
+                                                        <li><a href="/sectors/warehouses-logistics">Warehouses & Logistics Centers</a></li>
+                                                        <li><a href="/sectors/factories-manufacturing">Factories & Manufacturing Plants</a></li>
+                                                        <li><a href="/sectors/roads-highways">Roads & Highways</a></li>
+                                                        <li><a href="/sectors/bridges-tunnels">Bridges & Tunnels</a></li>
+                                                        <li><a href="/sectors/railways-airports">Railways & Airports</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Column 3: Specialized Construction -->
+                                                <div class="single-magemenu">
+                                                    <h4>Specialized Construction</h4>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="/sectors/healthcare-facilities">Healthcare Facilities</a></li>
+                                                        <li><a href="/sectors/educational-institutions">Educational Institutions</a></li>
+                                                        <li><a href="/sectors/sports-stadiums">Sports Stadiums & Arenas</a></li>
+                                                        <li><a href="/sectors/cultural-centers">Cultural Centers & Museums</a></li>
+                                                        <li><a href="/sectors/religious-buildings">Religious Buildings</a></li>
+                                                        <li><a href="/sectors/green-buildings">Green & Sustainable Buildings</a></li>
+                                                    </ul>
+                                                </div>
+
+                                                <!-- Column 4: Renovation & Specialty -->
+                                                <div class="single-magemenu">
+                                                    <h4>Renovation & Specialty</h4>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="/sectors/renovation-restoration">Renovation & Restoration</a></li>
+                                                        <li><a href="/sectors/historic-preservation">Historic Preservation</a></li>
+                                                        <li><a href="/sectors/interior-fit-outs">Interior Fit-Outs</a></li>
+                                                        <li><a href="/sectors/landscaping">Landscaping & Site Development</a></li>
+                                                        <li><a href="/sectors/demolition">Demolition & Site Clearing</a></li>
+                                                        <li><a href="/sectors/emergency-repair">Emergency Repair Services</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <!-- MEGA MENU: Explore (Existing Content) -->
+                                <li class="rs-mega-menu mega-rs">
+                                    <a href="#">Explore <i class="fa fa-angle-down"></i></a>
                                     <ul class="mega-menu">
                                         <li class="mega-menu-container">
                                             <div class="mega-menu-innner">
                                                 <div class="single-magemenu">
-                                               
+                                                    <h4>Core Philosophy</h4>
                                                     <ul class="sub-menu">
                                                         <li><a href="/about">About Compassionate Capitalism</a></li>
                                                         <li><a href="/features">7 Core Features of Compassionate Capitalism</a></li>
-                                                        <li><a href="/advances">5 Significant Advances to Capitalism by Compassionate Capitalism</a></li>
+                                                        <li><a href="/advances">5 Significant Advances to Capitalism</a></li>
                                                         <li><a href="/mind">The Mind of King Charles N. Lambert</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="single-magemenu">
-                                                  
+                                                    <h4>Development & Rankings</h4>
                                                     <ul class="sub-menu">
                                                         <li><a href="/rankings">Compassionate Capitalism Development Rankings</a></li>
                                                         <li><a href="/investment">Compassionate Capitalism Investment Points</a></li>
                                                         <li><a href="/channels">28 Development Channels</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="single-magemenu">
+                                                    <h4>Resources</h4>
+                                                    <ul class="sub-menu">
+                                                        <li><a href="/case-studies">Case Studies</a></li>
+                                                        <li><a href="/reports">Annual Reports</a></li>
+                                                        <li><a href="/white-papers">White Papers</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -82,7 +152,19 @@
                         </nav>
                         <div class="right-bar-icon rs-offcanvas-link text-right">
                             <!-- Beautiful Responsive Search Bar -->
-                            
+                            <div class="live-search-wrapper" style="position: relative;">
+                                <input 
+                                    type="text" 
+                                    id="headerLiveSearch" 
+                                    class="header-search-input" 
+                                    placeholder="Search anything..." 
+                                    aria-label="Search entire page content"
+                                    style="padding: 8px 15px; font-size: 14px; border: 1px solid #ddd; border-radius: 20px; background: #fff; outline: none; width: 200px; transition: all 0.3s;"
+                                    onfocus="this.style.width='250px'; this.style.borderColor='#DC0028'; this.style.boxShadow='0 0 0 2px rgba(220,0,40,0.1)'"
+                                    onblur="this.style.width='200px'; this.style.borderColor='#ddd'; this.style.boxShadow='none'"
+                                >
+                                <i class="fa fa-search" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #999; pointer-events: none;"></i>
+                            </div>
                             <a id="nav-expander" class="nav-expander fixed">
                                 <i class="fa fa-bars fa-lg white"></i>
                             </a>
@@ -95,3 +177,137 @@
     <!-- Menu End -->
 </header>
 
+<style>
+    /* Mega Menu Styling for Sectors */
+    .single-magemenu h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #DC0028;
+        border-left: 3px solid #DC0028;
+        padding-left: 12px;
+    }
+
+    /* Ensure mega menu columns have proper width */
+    .mega-menu-innner {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        justify-content: space-between;
+    }
+
+    .single-magemenu {
+        flex: 1;
+        min-width: 200px;
+    }
+
+    .single-magemenu ul.sub-menu li {
+        margin-bottom: 10px;
+    }
+
+    .single-magemenu ul.sub-menu li a {
+        font-size: 14px;
+        color: #505050;
+        transition: all 0.3s ease;
+        display: block;
+        padding: 5px 0;
+    }
+
+    .single-magemenu ul.sub-menu li a:hover {
+        color: #DC0028;
+        transform: translateX(5px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+        .mega-menu-innner {
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .single-magemenu {
+            width: 100%;
+        }
+        
+        .single-magemenu h4 {
+            margin-top: 15px;
+        }
+    }
+
+    /* Live search input focus */
+    .header-search-input:focus {
+        width: 250px !important;
+        border-color: #DC0028 !important;
+    }
+</style>
+
+<script>
+    // Live search functionality
+    const headerSearchInput = document.getElementById('headerLiveSearch');
+    let debounceTimer;
+
+    function clearHighlights() {
+        const highlighted = document.querySelectorAll('.search-highlight');
+        highlighted.forEach(el => {
+            const parent = el.parentNode;
+            parent.replaceChild(document.createTextNode(el.textContent), el);
+            parent.normalize();
+        });
+    }
+
+    function highlightText(searchTerm) {
+        if (!searchTerm || searchTerm.trim() === '') {
+            clearHighlights();
+            return;
+        }
+
+        clearHighlights();
+
+        const walker = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode: function(node) {
+                    if (node.parentElement.tagName === 'SCRIPT' || 
+                        node.parentElement.tagName === 'STYLE' ||
+                        node.parentElement.classList?.contains('search-highlight') ||
+                        node.parentElement.id === 'headerLiveSearch') {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }
+        );
+
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        const escapedTerm = searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`(${escapedTerm})`, 'gi');
+        
+        textNodes.forEach(node => {
+            const text = node.nodeValue;
+            if (regex.test(text)) {
+                const span = document.createElement('span');
+                span.className = 'search-highlight';
+                span.innerHTML = text.replace(regex, '<mark style="background:#DC0028; color:#fff; padding: 2px 4px; border-radius: 3px;">$1</mark>');
+                node.parentNode.replaceChild(span, node);
+            }
+        });
+    }
+
+    if (headerSearchInput) {
+        headerSearchInput.addEventListener('input', function(e) {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                highlightText(e.target.value.trim());
+            }, 300);
+        });
+
+        headerSearchInput.addEventListener('keyup', function(e) {
+            if (e.target.value === '') {
+                clearHighlights();
+            }
+        });
+    }
+</script>
