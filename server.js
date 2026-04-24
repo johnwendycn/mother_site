@@ -102,38 +102,8 @@ app.get('/api/google-translate', (req, res) => {
     });
 });
 
-// Simple home route if EJS not available
-app.get('/', (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Compassionate Capitalism</title>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <style>
-                body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
-                .container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
-                h1 { color: #0a2b3e; }
-                .features { display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
-                .feature { padding: 20px; border: 1px solid #ddd; border-radius: 10px; width: 200px; background: white; }
-                .feature i { font-size: 40px; color: #667eea; }
-            </style>
-        </head>
-        <body>
-            <div class="container">
-                <h1>Welcome to Compassionate Capitalism</h1>
-                <p>Your gateway to ethical and sustainable economic development.</p>
-                <div class="features">
-                    <div class="feature"><i class="fa fa-line-chart"></i><h3>Investment</h3></div>
-                    <div class="feature"><i class="fa fa-graduation-cap"></i><h3>Education</h3></div>
-                    <div class="feature"><i class="fa fa-users"></i><h3>Community</h3></div>
-                </div>
-                <p style="margin-top: 40px;">Server is running correctly! 🚀</p>
-            </div>
-        </body>
-        </html>
-    `);
-});
+// REMOVED: The duplicate hardcoded home route that was here
+// Your home.ejs will now be served by the mainRouter
 
 // 404 handler for API - using regex pattern
 app.use(/\/api\/.*/, (req, res) => {

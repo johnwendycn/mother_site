@@ -2,17 +2,17 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('index', {
-        page: 'about',
-        title: 'About Compassionate Capitalism',
+    res.render('layout', {
+        page: 'channels',
+        title: '28 Development Channels',
         activeHome: false,
-        activeAbout: true,
+        activeAbout: false,
         activeFeatures: false,
         activeAdvances: false,
         activeRankings: false,
         activeInvestment: false,
         activeMind: false,
-        activeChannels: false
+        activeChannels: true
     });
 });
 

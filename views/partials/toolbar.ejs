@@ -35,13 +35,79 @@
 </div>
 
 <style>
-    /* Toolbar Styles */
+    /* Animated Toolbar Styles */
     .rs-toolbar {
-        background: linear-gradient(135deg, #0a2b3e 0%, #0d3b4f 100%);
+        background: #DC0028;
+        background: linear-gradient(90deg, #DC0028 0%, #DC0028 25%, #b00020 50%, #DC0028 75%, #DC0028 100%);
+        background-size: 200% 100%;
+        animation: gradientShift 3s ease infinite;
         padding: 12px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         position: relative;
         z-index: 1000;
+    }
+    
+    /* Gradient Shifting Animation */
+    @keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+    
+    /* Optional: Pulsing background animation */
+    @keyframes pulseColor {
+        0% {
+            background-color: #DC0028;
+            box-shadow: 0 0 0 0 rgba(220, 0, 40, 0.5);
+        }
+        50% {
+            background-color: #b00020;
+            box-shadow: 0 0 0 5px rgba(220, 0, 40, 0);
+        }
+        100% {
+            background-color: #DC0028;
+            box-shadow: 0 0 0 0 rgba(220, 0, 40, 0);
+        }
+    }
+    
+    /* Alternative: Smooth pulsing animation (uncomment to use instead of gradient) */
+    /* .rs-toolbar {
+        background: #DC0028;
+        animation: pulseColor 2s ease infinite;
+    } */
+    
+    /* Shimmer effect overlay */
+    .rs-toolbar::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+            transparent, 
+            rgba(255, 255, 255, 0.15), 
+            transparent);
+        animation: shimmer 2s infinite;
+        pointer-events: none;
+    }
+    
+    @keyframes shimmer {
+        0% {
+            left: -100%;
+        }
+        20% {
+            left: 100%;
+        }
+        100% {
+            left: 100%;
+        }
     }
     
     .rs-toolbar-left,
@@ -68,15 +134,18 @@
     .welcome-message {
         color: #fff;
         font-size: 14px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
     
     .welcome-message i {
         margin-right: 8px;
-        color: #ff6b6b;
+        color: #fff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
     
     .welcome-message span {
         color: #fff;
+        font-weight: 500;
     }
     
     .toolbar-share-icon ul {
@@ -91,17 +160,20 @@
         color: #fff;
         font-size: 14px;
         transition: all 0.3s ease;
-        opacity: 0.8;
+        opacity: 0.9;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
     
     .toolbar-share-icon ul li a:hover {
         opacity: 1;
-        color: #ff6b6b;
-        transform: translateY(-2px);
+        color: #fff;
+        transform: translateY(-2px) scale(1.1);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
     
     .apply-btn {
-        background: linear-gradient(135deg, #ff6b6b, #ff4757);
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(5px);
         color: #fff;
         padding: 6px 20px;
         border-radius: 25px;
@@ -109,11 +181,14 @@
         font-size: 13px;
         font-weight: 500;
         transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.3);
     }
     
     .apply-btn:hover {
+        background: rgba(255, 255, 255, 0.35);
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
     }
     
     /* Google Translate Wrapper */
@@ -121,21 +196,25 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
         padding: 6px 16px;
         border-radius: 40px;
         transition: all 0.3s ease;
         cursor: pointer;
+        border: 1px solid rgba(255, 255, 255, 0.2);
     }
     
     .google-translate-wrapper:hover {
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.25);
         transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.4);
     }
     
     .google-translate-wrapper i {
         color: #fff;
         font-size: 16px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
     
     /* Google Translate Custom Styling */
@@ -156,6 +235,7 @@
         color: #fff !important;
         font-size: 13px !important;
         font-weight: 400 !important;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
     
     .goog-te-gadget-simple .goog-te-menu-value span {

@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('index', {
-        page: 'about',
-        title: 'About Compassionate Capitalism',
+    res.render('layout', {
+        page: 'investment',
+        title: 'Compassionate Capitalism Investment Points',
         activeHome: false,
-        activeAbout: true,
+        activeAbout: false,
         activeFeatures: false,
         activeAdvances: false,
         activeRankings: false,
-        activeInvestment: false,
+        activeInvestment: true,
         activeMind: false,
         activeChannels: false
     });

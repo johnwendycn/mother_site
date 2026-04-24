@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('index', {
-        page: 'about',
-        title: 'About Compassionate Capitalism',
+    res.render('layout', {
+        page: 'features',
+        title: '7 Core Features of Compassionate Capitalism',
         activeHome: false,
-        activeAbout: true,
-        activeFeatures: false,
+        activeAbout: false,
+        activeFeatures: true,
         activeAdvances: false,
         activeRankings: false,
         activeInvestment: false,

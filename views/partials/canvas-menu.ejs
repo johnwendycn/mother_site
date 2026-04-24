@@ -8,10 +8,13 @@
     </div>
     <ul class="sidebarnav_menu list-unstyled main-menu">
         <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/event">Event</a></li>
-        <li><a href="/news">News</a></li>
-        <li><a href="/contact">Contact</a></li>
+        <li><a href="/about">About Compassionate Capitalism</a></li>
+        <li><a href="/features">7 Core Features of Compassionate Capitalism</a></li>
+        <li><a href="/advances">5 Significant Advances to Capitalism by Compassionate Capitalism</a></li>
+        <li><a href="/rankings">Compassionate Capitalism Development Rankings</a></li>
+        <li><a href="/investment">Compassionate Capitalism Investment Points</a></li>
+        <li><a href="/mind">The Mind of King Charles N. Lambert</a></li>
+        <li><a href="/channels">28 Development Channels</a></li>
     </ul>
     <div class="search-wrap"> 
         <label class="screen-reader-text">Search for:</label> 
@@ -35,7 +38,7 @@
 
 .search-input {
     flex: 1;
-    padding: 12px 15px;
+    padding: 12px 35px 12px 15px;
     border: 2px solid #e0e0e0;
     border-radius: 30px;
     font-size: 14px;
@@ -148,6 +151,15 @@
     cursor: pointer;
     display: none;
     font-size: 16px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.clear-search:hover {
+    background: #f0f0f0;
+    color: #333;
 }
 
 .clear-search.show {
@@ -158,6 +170,73 @@
 .search-highlight {
     background-color: #ffeb3b;
     transition: background-color 0.5s ease;
+}
+
+/* Canvas Menu Styles */
+.right_menu_togle {
+    width: 320px;
+    padding: 30px 25px;
+}
+
+.canvas-logo {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.canvas-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.sidebarnav_menu {
+    margin: 0 0 30px 0;
+    padding: 0;
+}
+
+.sidebarnav_menu li {
+    margin-bottom: 15px;
+    list-style: none;
+}
+
+.sidebarnav_menu li a {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    display: block;
+    padding: 8px 0;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.sidebarnav_menu li a:hover {
+    color: #667eea;
+    padding-left: 10px;
+}
+
+.close-btn {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+#nav-close {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+#nav-close:hover {
+    background: #667eea;
+    color: white;
+    transform: rotate(90deg);
 }
 
 /* Responsive */
@@ -173,6 +252,15 @@
     .search-result-preview {
         font-size: 11px;
     }
+    
+    .right_menu_togle {
+        width: 280px;
+        padding: 20px;
+    }
+    
+    .sidebarnav_menu li a {
+        font-size: 14px;
+    }
 }
 </style>
 
@@ -182,9 +270,20 @@
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
     const searchResults = document.getElementById('searchResults');
+    const closeCanvasBtn = document.getElementById('nav-close');
     
     let currentSearchTerm = '';
     let searchTimeout = null;
+    
+    // Close canvas menu when clicking on nav-close
+    if (closeCanvasBtn) {
+        closeCanvasBtn.addEventListener('click', function() {
+            const canvasMenu = document.querySelector('.right_menu_togle');
+            if (canvasMenu && canvasMenu.classList) {
+                canvasMenu.classList.remove('active');
+            }
+        });
+    }
     
     // Function to extract text content from an element
     function getElementText(element) {
@@ -290,7 +389,7 @@
         // Add stats
         const statsDiv = document.createElement('div');
         statsDiv.className = 'search-stats';
-        statsDiv.innerHTML = `Found ${results.length} result${results.length !== 1 ? 's' : ''} for "${searchTerm}"`;
+        statsDiv.innerHTML = `Found ${results.length} result${results.length !== 1 ? 's' : ''} for "${escapeHtml(searchTerm)}"`;
         searchResults.appendChild(statsDiv);
         
         // Add results
@@ -317,9 +416,15 @@
                         result.element.style.backgroundColor = originalBg;
                     }, 2000);
                     
-                    // Close results
+                    // Close results and clear input
                     searchResults.classList.remove('active');
-                    searchInput.value = '';
+                    if (searchInput) searchInput.value = '';
+                    
+                    // Also close canvas menu
+                    const canvasMenu = document.querySelector('.right_menu_togle');
+                    if (canvasMenu && canvasMenu.classList) {
+                        canvasMenu.classList.remove('active');
+                    }
                 }
             });
             
@@ -331,6 +436,7 @@
     
     // Function to perform search
     function performSearch() {
+        if (!searchInput) return;
         const searchTerm = searchInput.value.trim();
         
         if (searchTerm.length < 2) {
@@ -385,8 +491,8 @@
     document.addEventListener('click', (e) => {
         if (searchResults && searchResults.classList.contains('active')) {
             if (!searchResults.contains(e.target) && 
-                !searchInput.contains(e.target) && 
-                !searchButton.contains(e.target)) {
+                !searchInput?.contains(e.target) && 
+                !searchButton?.contains(e.target)) {
                 searchResults.classList.remove('active');
             }
         }
@@ -430,9 +536,12 @@
     clearBtn.className = 'clear-search';
     clearBtn.innerHTML = '✕';
     clearBtn.setAttribute('aria-label', 'Clear search');
+    clearBtn.setAttribute('type', 'button');
     
-    if (searchInput && searchInput.parentNode) {
-        searchInput.parentNode.appendChild(clearBtn);
+    const searchContainer = document.querySelector('.search-container');
+    if (searchContainer && searchInput) {
+        searchContainer.style.position = 'relative';
+        searchContainer.appendChild(clearBtn);
         
         searchInput.addEventListener('input', () => {
             if (searchInput.value.length > 0) {
@@ -444,13 +553,15 @@
         });
         
         clearBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            searchInput.focus();
-            searchResults.classList.remove('active');
-            clearBtn.classList.remove('show');
+            if (searchInput) {
+                searchInput.value = '';
+                searchInput.focus();
+                searchResults.classList.remove('active');
+                clearBtn.classList.remove('show');
+            }
         });
     }
     
-    console.log('Search functionality initialized!');
+    console.log('Canvas menu search functionality initialized!');
 })();
 </script>

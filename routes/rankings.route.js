@@ -3,13 +3,13 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     res.render('index', {
-        page: 'about',
-        title: 'About Compassionate Capitalism',
+        page: 'rankings',
+        title: 'Compassionate Capitalism Development Rankings',
         activeHome: false,
-        activeAbout: true,
+        activeAbout: false,
         activeFeatures: false,
         activeAdvances: false,
-        activeRankings: false,
+        activeRankings: true,
         activeInvestment: false,
         activeMind: false,
         activeChannels: false
