@@ -1,19 +1,23 @@
 const express = require('express');
 const router = express.Router();
+const aboutController = require('../controllers/about.controller');
 
-router.get('/', (req, res) => {
-    res.render('index', {
-        page: 'about',
-        title: 'About Compassionate Capitalism',
-        activeHome: false,
-        activeAbout: true,
-        activeFeatures: false,
-        activeAdvances: false,
-        activeRankings: false,
-        activeInvestment: false,
-        activeMind: false,
-        activeChannels: false
-    });
-});
+// GET about page
+router.get('/', aboutController.getAbout);
+
+// POST about page (for contact form, newsletter signup, etc.)
+router.post('/', aboutController.postAbout);
+
+// Optional: GET about/history subpage
+router.get('/history', aboutController.getHistory);
+
+// Optional: GET about/mission subpage
+router.get('/mission', aboutController.getMission);
+
+// Optional: GET about/vision subpage
+router.get('/vision', aboutController.getVision);
+
+// Optional: GET about/team subpage
+router.get('/team', aboutController.getTeam);
 
 module.exports = router;

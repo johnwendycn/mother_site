@@ -37,23 +37,23 @@ const PORT = process.env.PORT || 3003;
 // ============================================
 // CSP HEADERS - MUST BE BEFORE ANY ROUTES
 // ============================================
-// In your server.js - Updated CSP headers
+// In your server.js - Updated CSP headers with PDF.js and required CDNs
 app.use((req, res, next) => {
     res.setHeader(
         'Content-Security-Policy',
         "default-src 'self'; " +
-        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com http://www.gstatic.com https://cdn.jsdelivr.net https://player.vimeo.com; " +
-        "script-src-elem 'self' 'unsafe-inline' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com https://player.vimeo.com; " +
-        "style-src 'self' 'unsafe-inline' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net; " +
-        "style-src-elem 'self' 'unsafe-inline' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com https://fonts.googleapis.com; " +
-        "font-src 'self' https://fonts.gstatic.com http://fonts.gstatic.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com data:; " +
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com http://www.gstatic.com https://cdn.jsdelivr.net https://player.vimeo.com https://cdnjs.cloudflare.com http://cdnjs.cloudflare.com https://unpkg.com http://unpkg.com; " +
+        "script-src-elem 'self' 'unsafe-inline' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com https://player.vimeo.com https://cdnjs.cloudflare.com http://cdnjs.cloudflare.com https://unpkg.com http://unpkg.com; " +
+        "style-src 'self' 'unsafe-inline' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com http://cdnjs.cloudflare.com https://unpkg.com http://unpkg.com; " +
+        "style-src-elem 'self' 'unsafe-inline' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com https://fonts.googleapis.com https://cdnjs.cloudflare.com http://cdnjs.cloudflare.com; " +
+        "font-src 'self' https://fonts.gstatic.com http://fonts.gstatic.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com https://cdnjs.cloudflare.com http://cdnjs.cloudflare.com data:; " +
         "connect-src 'self' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com https://player.vimeo.com; " +
         "frame-src 'self' https://translate.google.com http://translate.google.com https://*.google.com http://*.google.com https://player.vimeo.com https://vimeo.com; " +
         "img-src 'self' data: https://*.google.com http://*.google.com https://*.googleapis.com http://*.googleapis.com https://www.gstatic.com http://www.gstatic.com https://fonts.gstatic.com http://fonts.gstatic.com https://*.ggpht.com http://*.ggpht.com translate.google.com http://translate.google.com https://i.vimeocdn.com https://player.vimeo.com; " +
         "media-src 'self' https://player.vimeo.com https://vimeo.com; " +
         "object-src 'none'; " +
         "base-uri 'self'; " +
-        "worker-src 'self' blob:;"
+        "worker-src 'self' blob: https://cdnjs.cloudflare.com;"
     );
     next();
 });

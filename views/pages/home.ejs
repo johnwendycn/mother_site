@@ -1416,7 +1416,756 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <!-- Mission End -->
+<!-- AOS Animation Library -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+<!-- PDF.js Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+<style>
+    /* ==================== ADVANCED STYLES ==================== */
+    
+    /* TEXT IMPROVEMENT */
+    .content-part p {
+        text-align: justify;
+        line-height: 1.8;
+        color: #444;
+    }
+
+    /* IMAGE CONTAINER */
+    .bws-img {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    /* IMAGE STYLE */
+    .bws-img img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.6s ease;
+        border-radius: 12px;
+    }
+
+    /* HOVER EFFECT */
+    .bws-img:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    .bws-img:hover img {
+        transform: scale(1.08);
+    }
+
+    /* FLOATING EFFECT */
+    .float-img {
+        animation: floatY 5s ease-in-out infinite;
+    }
+
+    @keyframes floatY {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* TITLE STYLE */
+    .title {
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .sub-text {
+        color: #ff3c00;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* BUTTON POLISH */
+    .readon2 {
+        background: #DC0028;
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: 30px;
+        transition: all 0.4s ease;
+        display: inline-block;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .readon2:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(122, 5, 5, 0.4);
+        color: #fff;
+    }
+
+    /* ==================== PDF MODAL POPUP ==================== */
+    .pdf-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(15px);
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .pdf-modal.active {
+        display: flex;
+        opacity: 1;
+    }
+
+    .pdf-modal-content {
+        position: relative;
+        width: 90%;
+        max-width: 1200px;
+        height: 85vh;
+        margin: auto;
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        transform: scale(0.9);
+        transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+        animation: modalPopIn 0.5s ease forwards;
+    }
+
+    @keyframes modalPopIn {
+        0% {
+            transform: scale(0.7);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    .pdf-modal-header {
+        background: linear-gradient(135deg, #ff3c00, #ff7a00);
+        padding: 15px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+    }
+
+    .pdf-modal-header h3 {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .pdf-modal-header h3 i {
+        margin-right: 10px;
+    }
+
+    .pdf-close {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: #fff;
+        font-size: 28px;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .pdf-close:hover {
+        background: rgba(255, 255, 255, 0.4);
+        transform: rotate(90deg);
+    }
+
+    .pdf-viewer-container {
+        height: calc(85vh - 60px);
+        overflow-y: auto;
+        background: #525659;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    /* PDF Canvas Styling */
+    .pdf-canvas {
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+        background: #fff;
+        border-radius: 8px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* PDF Controls */
+    .pdf-controls {
+        position: sticky;
+        top: 0;
+        background: #f8f9fa;
+        padding: 12px 20px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 15px;
+        z-index: 10;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .pdf-controls button {
+        background: linear-gradient(45deg, #ff3c00, #ff7a00);
+        border: none;
+        color: #fff;
+        padding: 8px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .pdf-controls button:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255, 60, 0, 0.4);
+    }
+
+    .pdf-controls button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .page-info {
+        font-weight: 600;
+        color: #ff3c00;
+        padding: 8px 15px;
+        background: #fff;
+        border-radius: 25px;
+        margin: 0 10px;
+    }
+
+    .pdf-loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: #fff;
+        z-index: 20;
+        background: rgba(0,0,0,0.8);
+        padding: 30px;
+        border-radius: 15px;
+    }
+
+    .pdf-loading .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid #ff3c00;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Download Button */
+    .pdf-download {
+        background: #28a745 !important;
+    }
+
+    .pdf-download:hover:not(:disabled) {
+        background: #218838 !important;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .pdf-modal-content {
+            width: 95%;
+            height: 90vh;
+        }
+        
+        .pdf-controls button {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .page-info {
+            font-size: 12px;
+        }
+    }
+
+    @keyframes slideInRight {
+        from { transform: translateX(100px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOutRight {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100px); opacity: 0; }
+    }
+</style>
+
+<div class="rs-services rs-services-style7 pt-100 pb-100">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- LEFT: IMAGES -->
+            <div class="col-lg-7">
+                <div class="row">
+
+                    <!-- IMAGE 1 -->
+                    <div class="col-md-6" data-aos="fade-right">
+                        <div class="bws-img float-img">
+                            <img src="img/origin.png" alt="Origin of Black Wall Street" onerror="this.src='https://placehold.co/600x400/333/white?text=Black+Wall+Street'">
+                        </div>
+                    </div>
+
+                    <!-- IMAGE 2 -->
+                    <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
+                        <div class="bws-img float-img">
+                            <img src="img/joinus.png" alt="Join Black Wall Street" onerror="this.src='https://placehold.co/600x400/ff6600/white?text=Join+Us'">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT: CONTENT -->
+            <div class="col-lg-5 pl-15 pt-30" data-aos="fade-up" data-aos-delay="300">
+                <div class="content-part">
+
+                    <span class="sub-text">About Black Wall Street</span>
+
+                    <h2 class="uppercase title pb-20 md-pb-10">
+                        From Economic Exclusion to Empowered Ownership
+                    </h2>
+
+                    <p class="pb-20">
+                        Economic power shapes destiny. Across history, those who control capital determine growth, innovation, and societal progress. Yet for generations, Africa and its global diaspora have been excluded from meaningful participation in this system, despite contributing immensely to global wealth.
+                    </p>
+
+                    <p class="pb-20">
+                        In response, a transformative movement emerged in the early 20th century. Freed African Americans built a thriving financial ecosystem rooted in unity, discipline, and vision—known as <strong>Black Wall Street</strong>, a symbol of economic independence and collective prosperity.
+                    </p>
+
+                    <p class="mb-30">
+                        Today, that vision continues through a modern, purpose-driven system focused on ownership, not charity. Members gain access to wealth-building opportunities, financial education, and a supportive ecosystem designed for sustainable growth and shared success.
+                    </p>
+
+                    <div class="btn-part">
+                        <a class="readon2" id="readMoreBtn">
+                            📄 Read More
+                        </a>
+                    </div>
+                    <br>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- PDF MODAL POPUP -->
+<div id="pdfModal" class="pdf-modal">
+    <div class="pdf-modal-content">
+        <div class="pdf-modal-header">
+            <h3>
+                📄 Black Wall Street - Comprehensive Report
+            </h3>
+            <button class="pdf-close" id="closePdfModal">&times;</button>
+        </div>
+        
+        <div class="pdf-viewer-container" id="pdfViewerContainer">
+            <div class="pdf-loading" id="pdfLoading">
+                <div class="spinner"></div>
+                <p id="loadingMessage">Loading PDF document...</p>
+            </div>
+            
+            <div class="pdf-controls" id="pdfControls" style="display: none;">
+                <button id="prevPageBtn">◀ Previous</button>
+                <span class="page-info">
+                    Page <span id="pageNum">1</span> of <span id="pageCount">0</span>
+                </span>
+                <button id="nextPageBtn">Next ▶</button>
+                <button id="downloadPdfBtn" class="pdf-download">⬇ Download PDF</button>
+            </div>
+            
+            <div id="pdfCanvasContainer"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize AOS
+    if (typeof AOS !== 'undefined') {
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    }
+
+    // ==================== FIXED PDF VIEWER ====================
+    // PDF.js configuration
+    if (typeof pdfjsLib !== 'undefined') {
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+    }
+    
+    let pdfDoc = null;
+    let currentPage = 1;
+    let totalPages = 0;
+    let scale = 1.5;
+    let isLoading = false;
+    let loadAttempts = 0;
+    
+    // Get DOM elements
+    const canvasContainer = document.getElementById('pdfCanvasContainer');
+    const loadingDiv = document.getElementById('pdfLoading');
+    const controlsDiv = document.getElementById('pdfControls');
+    const loadingMessage = document.getElementById('loadingMessage');
+    
+    // PDF file path - VERIFY THIS FILE EXISTS!
+    const pdfUrl = 'img/byd.pdf';
+    
+    // Render PDF page
+    async function renderPage(pageNum) {
+        if (!pdfDoc) {
+            console.error('No PDF document loaded');
+            return false;
+        }
+        
+        try {
+            // Update loading message
+            if (loadingMessage) loadingMessage.textContent = `Rendering page ${pageNum}...`;
+            
+            // Get the page
+            const page = await pdfDoc.getPage(pageNum);
+            
+            // Calculate viewport
+            const viewport = page.getViewport({ scale: scale });
+            
+            // Create canvas
+            const canvas = document.createElement('canvas');
+            canvas.className = 'pdf-canvas';
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+            
+            // Clear container and add canvas
+            if (canvasContainer) {
+                canvasContainer.innerHTML = '';
+                canvasContainer.appendChild(canvas);
+            }
+            
+            // Render PDF page
+            const renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+            
+            await page.render(renderContext).promise;
+            
+            // Update page info
+            const pageNumSpan = document.getElementById('pageNum');
+            const pageCountSpan = document.getElementById('pageCount');
+            if (pageNumSpan) pageNumSpan.textContent = pageNum;
+            if (pageCountSpan) pageCountSpan.textContent = totalPages;
+            
+            // Update button states
+            const prevBtn = document.getElementById('prevPageBtn');
+            const nextBtn = document.getElementById('nextPageBtn');
+            if (prevBtn) prevBtn.disabled = (pageNum <= 1);
+            if (nextBtn) nextBtn.disabled = (pageNum >= totalPages);
+            
+            return true;
+            
+        } catch (error) {
+            console.error('Error rendering page:', error);
+            return false;
+        }
+    }
+    
+    // Show error message
+    function showErrorMessage(errorDetails = '') {
+        if (canvasContainer) {
+            canvasContainer.innerHTML = `
+                <div style="text-align: center; padding: 50px; background: #fff; border-radius: 15px; max-width: 500px; margin: 20px auto;">
+                    <div style="font-size: 50px; margin-bottom: 20px;">⚠️</div>
+                    <h3 style="margin-top: 20px; color: #ff3c00;">Unable to Load PDF</h3>
+                    <p>The PDF document could not be loaded.</p>
+                    <p style="font-size: 12px; color: #999; margin-top: 10px;">Attempted to load: ${pdfUrl}</p>
+                    ${errorDetails ? `<p style="font-size: 12px; color: #ff3c00;">${errorDetails}</p>` : ''}
+                    <button onclick="location.reload()" style="background: #ff3c00; color: #fff; border: none; padding: 10px 25px; border-radius: 25px; margin-top: 15px; cursor: pointer;">
+                        🔄 Try Again
+                    </button>
+                </div>
+            `;
+        }
+        if (loadingDiv) loadingDiv.style.display = 'none';
+        if (controlsDiv) controlsDiv.style.display = 'none';
+        isLoading = false;
+    }
+    
+    // Load PDF document
+    async function loadPDF() {
+        if (isLoading) return;
+        isLoading = true;
+        loadAttempts++;
+        
+        try {
+            // Show loading
+            if (loadingDiv) {
+                loadingDiv.style.display = 'block';
+                if (loadingMessage) loadingMessage.textContent = `Loading PDF (attempt ${loadAttempts})...`;
+            }
+            if (controlsDiv) controlsDiv.style.display = 'none';
+            if (canvasContainer) canvasContainer.innerHTML = '';
+            
+            console.log(`Loading PDF from: ${pdfUrl}`);
+            
+            // Load PDF with timeout
+            const loadingTask = pdfjsLib.getDocument({
+                url: pdfUrl,
+                withCredentials: false,
+                disableRange: true,  // Disable range requests for better compatibility
+                disableStream: true   // Disable streaming for better compatibility
+            });
+            
+            // Add timeout to loading task
+            const timeoutPromise = new Promise((_, reject) => {
+                setTimeout(() => reject(new Error('PDF loading timeout after 15 seconds')), 15000);
+            });
+            
+            pdfDoc = await Promise.race([loadingTask.promise, timeoutPromise]);
+            totalPages = pdfDoc.numPages;
+            
+            console.log(`PDF loaded successfully! Total pages: ${totalPages}`);
+            
+            // Update total pages display
+            const pageCountSpan = document.getElementById('pageCount');
+            if (pageCountSpan) pageCountSpan.textContent = totalPages;
+            
+            // Hide loading, show controls
+            if (loadingDiv) loadingDiv.style.display = 'none';
+            if (controlsDiv) controlsDiv.style.display = 'flex';
+            
+            // Render first page
+            currentPage = 1;
+            const renderSuccess = await renderPage(currentPage);
+            
+            if (!renderSuccess) {
+                throw new Error('Failed to render first page');
+            }
+            
+            isLoading = false;
+            
+        } catch (error) {
+            console.error('Error loading PDF:', error);
+            isLoading = false;
+            showErrorMessage(error.message);
+        }
+    }
+    
+    // ==================== MODAL CONTROLS ====================
+    const modal = document.getElementById('pdfModal');
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const closeBtn = document.getElementById('closePdfModal');
+    const prevBtn = document.getElementById('prevPageBtn');
+    const nextBtn = document.getElementById('nextPageBtn');
+    const downloadBtn = document.getElementById('downloadPdfBtn');
+    
+    // Open modal
+    if (readMoreBtn) {
+        readMoreBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Reset loading state for fresh load
+                if (!pdfDoc && !isLoading) {
+                    await loadPDF();
+                } else if (pdfDoc && totalPages > 0) {
+                    // PDF already loaded, just render current page
+                    if (loadingDiv) loadingDiv.style.display = 'none';
+                    if (controlsDiv) controlsDiv.style.display = 'flex';
+                    await renderPage(currentPage);
+                }
+            }
+        });
+    }
+    
+    // Close modal function
+    function closeModal() {
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+    
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    
+    // Close on outside click
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    }
+    
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+    
+    // Previous page
+    if (prevBtn) {
+        prevBtn.addEventListener('click', async () => {
+            if (pdfDoc && currentPage > 1) {
+                currentPage--;
+                if (loadingDiv) loadingDiv.style.display = 'block';
+                await renderPage(currentPage);
+                if (loadingDiv) loadingDiv.style.display = 'none';
+            }
+        });
+    }
+    
+    // Next page
+    if (nextBtn) {
+        nextBtn.addEventListener('click', async () => {
+            if (pdfDoc && currentPage < totalPages) {
+                currentPage++;
+                if (loadingDiv) loadingDiv.style.display = 'block';
+                await renderPage(currentPage);
+                if (loadingDiv) loadingDiv.style.display = 'none';
+            }
+        });
+    }
+    
+    // Download PDF
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+            // Use fetch to get the PDF file and trigger download
+            fetch(pdfUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'Black_Wall_Street_Report.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(url);
+                    showNotification('Download started!', 'success');
+                })
+                .catch(error => {
+                    console.error('Download failed:', error);
+                    showNotification('Download failed. File may not exist.', 'error');
+                });
+        });
+    }
+    
+    // Notification function
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#28a745' : '#ff3c00'};
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 10001;
+            animation: slideInRight 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            font-weight: 500;
+        `;
+        notification.innerHTML = `${type === 'success' ? '✓' : '⚠️'} ${message}`;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+    
+    // Keyboard navigation for PDF
+    document.addEventListener('keydown', async (e) => {
+        if (!modal || !modal.classList.contains('active') || !pdfDoc) return;
+        
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            if (currentPage > 1) {
+                currentPage--;
+                if (loadingDiv) loadingDiv.style.display = 'block';
+                await renderPage(currentPage);
+                if (loadingDiv) loadingDiv.style.display = 'none';
+            }
+        } else if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            if (currentPage < totalPages) {
+                currentPage++;
+                if (loadingDiv) loadingDiv.style.display = 'block';
+                await renderPage(currentPage);
+                if (loadingDiv) loadingDiv.style.display = 'none';
+            }
+        }
+    });
+    
+    // Check if PDF exists on page load (for debugging)
+    window.addEventListener('load', () => {
+        fetch(pdfUrl, { method: 'HEAD' })
+            .then(response => {
+                if (response.ok) {
+                    console.log(`✅ PDF file found at: ${pdfUrl} (${response.headers.get('content-length')} bytes)`);
+                } else {
+                    console.warn(`⚠️ PDF file NOT FOUND at: ${pdfUrl} (Status: ${response.status})`);
+                    console.log('Place your PDF file at: ' + pdfUrl);
+                }
+            })
+            .catch(error => {
+                console.error(`❌ Cannot access PDF file at: ${pdfUrl}`, error);
+            });
+        
+        // Preload PDF in background after 3 seconds
+        setTimeout(() => {
+            if (!pdfDoc && !isLoading) {
+                console.log('Preloading PDF in background...');
+                loadPDF();
+            }
+        }, 3000);
+    });
+</script>
+
+
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Vision Start -->
        
         <!-- Vision End -->
@@ -2605,7 +3354,7 @@
         color: transparent;
         animation: rs-textShift 5s linear infinite;
         text-shadow: 0 0 8px rgba(0,255,255,0.6);
-        font-family: 'Inter', monospace;
+      
         backdrop-filter: blur(4px);
         padding: 0.5rem 1.2rem;
         border-radius: 60px;
@@ -2952,6 +3701,8 @@
         }
     })();
 </script>
+
+
 <!-- About Us End -->
  <div id="rs-partner" class="rs-partner pt-70 pb-70">
             <div class="container">
