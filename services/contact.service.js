@@ -1,48 +1,62 @@
+// services/contact.service.js
+
 const contactService = {
     getContactData: () => {
         return {
-            page: 'contact',
-            title: 'Contact Us'
+            title: 'Contact Us - Black Wall Street',
+            page: 'contact'
         };
     },
 
     getContactInfo: () => {
         return {
-            email: 'info@redirectmall.com',
-            phone: '+1234-567-890',
-            address: '123 Business Street, City, Country'
+            address: '123 Wall Street, Business District',
+            city: 'New York, NY 10001',
+            phone: '+1 (555) 123-4567',
+            email: 'info@blackwallstreet.com',
+            hours: 'Monday - Friday: 9:00 AM - 6:00 PM',
+            social: {
+                facebook: 'https://facebook.com/blackwallstreet',
+                twitter: 'https://twitter.com/blackwallstreet',
+                instagram: 'https://instagram.com/blackwallstreet',
+                linkedin: 'https://linkedin.com/company/blackwallstreet'
+            }
         };
     },
 
-    validateContactForm: (formData) => {
-        const errors = [];
+    processContactForm: (formData) => {
+        // Validate required fields
+        const { name, email, subject, message } = formData;
         
-        if (!formData.name || formData.name.length < 2) {
-            errors.push('Name is required and must be at least 2 characters');
+        if (!name || !email || !subject || !message) {
+            return {
+                success: false,
+                message: 'All fields are required'
+            };
         }
         
-        if (!formData.email || !formData.email.includes('@')) {
-            errors.push('Valid email is required');
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return {
+                success: false,
+                message: 'Please enter a valid email address'
+            };
         }
         
-        if (!formData.message || formData.message.length < 10) {
-            errors.push('Message must be at least 10 characters');
-        }
+        // Here you would typically:
+        // 1. Save to database
+        // 2. Send email notification
+        // 3. Trigger webhook, etc.
         
+        console.log('Contact form submitted:', formData);
+        
+        // For demo purposes, return success
         return {
-            isValid: errors.length === 0,
-            errors: errors
+            success: true,
+            message: 'Thank you for contacting us. We will get back to you soon!',
+            data: formData
         };
-    },
-
-    saveContactMessage: (formData) => {
-        // Save to database (simulated)
-        const message = {
-            id: Date.now(),
-            ...formData,
-            createdAt: new Date().toISOString()
-        };
-        return message;
     }
 };
 

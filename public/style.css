@@ -677,6 +677,18 @@ ul {
   background-position: center;
   background-position: center top;
 }
+.bg71 {
+  background-image: url(img/banner_about.jpg);
+  background-size: cover;
+  background-position: center;
+  background-position: center top;
+}
+bg72 {
+  background-image: url(img/feature.jpg);
+  background-size: cover;
+  background-position: center;
+  background-position: center top;
+}
 .bg8 {
   background-image: url(images/bg/bg8.jpg);
   background-attachment: fixed;
