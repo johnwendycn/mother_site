@@ -1,19 +1,13 @@
+// routes/ranking.route.js
+
 const express = require('express');
 const router = express.Router();
+const rankingController = require('../controllers/rankings.controller');
 
-router.get('/', (req, res) => {
-    res.render('index', {
-        page: 'rankings',
-        title: 'Compassionate Capitalism Development Rankings',
-        activeHome: false,
-        activeAbout: false,
-        activeFeatures: false,
-        activeAdvances: false,
-        activeRankings: true,
-        activeInvestment: false,
-        activeMind: false,
-        activeChannels: false
-    });
-});
+// GET ranking page
+router.get('/', rankingController.getRanking);
+
+// POST ranking form (if needed)
+router.post('/', rankingController.postRanking);
 
 module.exports = router;

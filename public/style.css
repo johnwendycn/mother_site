@@ -683,8 +683,45 @@ ul {
   background-position: center;
   background-position: center top;
 }
-bg72 {
+.bg72 {
   background-image: url(img/feature.jpg);
+  background-size: cover;
+  background-position: center;
+  background-position: center top;
+}
+.bg73 {
+  background-image: url(img/significant.jpg);
+  background-size: cover;
+  background-position: center;
+  background-position: center top;
+}
+.bg74 {
+  background-image: url(img/mind.jpg);
+  background-size: cover;
+  background-position: center;
+  background-position: center top;
+}
+.bg75 {
+  background-image: url(img/ranking.png);
+  background-size: cover;
+  background-position: center;
+  background-position: center top;
+}
+
+.bg76 {
+  background-image: url(img/investment.jpg);
+  background-size: cover;
+  background-position: center;
+  background-position: center top;
+}
+.bg77 {
+  background-image: url(img/terms.png);
+  background-size: cover;
+  background-position: center;
+  background-position: center top;
+}
+.bg78 {
+  background-image: url(img/channels.jpg);
   background-size: cover;
   background-position: center;
   background-position: center top;

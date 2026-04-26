@@ -1,19 +1,13 @@
+// routes/channels.route.js
+
 const express = require('express');
 const router = express.Router();
+const channelsController = require('../controllers/channels.controller');
 
-router.get('/', (req, res) => {
-    res.render('layout', {
-        page: 'channels',
-        title: '28 Development Channels',
-        activeHome: false,
-        activeAbout: false,
-        activeFeatures: false,
-        activeAdvances: false,
-        activeRankings: false,
-        activeInvestment: false,
-        activeMind: false,
-        activeChannels: true
-    });
-});
+// GET channels page
+router.get('/', channelsController.getChannels);
+
+// POST channels form (if needed)
+router.post('/', channelsController.postChannels);
 
 module.exports = router;

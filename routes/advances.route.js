@@ -1,19 +1,13 @@
+// routes/advances.route.js
+
 const express = require('express');
 const router = express.Router();
+const advancesController = require('../controllers/advances.controller');
 
-router.get('/', (req, res) => {
-    res.render('layout', {
-        page: 'advances',
-        title: '5 Significant Advances to Capitalism by Compassionate Capitalism',
-        activeHome: false,
-        activeAbout: false,
-        activeFeatures: false,
-        activeAdvances: true,
-        activeRankings: false,
-        activeInvestment: false,
-        activeMind: false,
-        activeChannels: false
-    });
-});
+// GET advances page
+router.get('/', advancesController.getAdvances);
+
+// POST advances form (if needed)
+router.post('/', advancesController.postAdvances);
 
 module.exports = router;

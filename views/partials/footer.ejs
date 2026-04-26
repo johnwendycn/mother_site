@@ -1,26 +1,25 @@
 <!-- About Us End -->
- <div id="rs-partner" class="rs-partner pt-70 pb-70">
-            <div class="container">
-				<div class="rs-carousel owl-carousel" data-loop="true" data-items="5" data-margin="80" data-autoplay="true" data-autoplay-timeout="5000" data-smart-speed="2000" data-dots="false" data-nav="false" data-nav-speed="false" data-mobile-device="2" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="4" data-ipad-device-nav="false" data-ipad-device-dots="false" data-md-device="5" data-md-device-nav="false" data-md-device-dots="false">
-                    <div class="partner-item">
-                        <a href="#"><img src="img/s1.jpg" alt="Partner Image"></a>
-                    </div>
-                    <div class="partner-item">
-                        <a href="#"><img src="img/s2.jpg" alt="Partner Image"></a>
-                    </div>
-                    <div class="partner-item">
-                        <a href="#"><img src="img/s3.jpg" alt="Partner Image"></a>
-                    </div>
-                    <div class="partner-item">
-                        <a href="#"><img src="img/s4.jpg" alt="Partner Image"></a>
-                    </div>
-                    <div class="partner-item">
-                        <a href="#"><img src="img/s5.jpg" alt="Partner Image"></a>
-                    </div>
-                </div>
+<div id="rs-partner" class="rs-partner pt-70 pb-70">
+    <div class="container">
+        <div class="rs-carousel owl-carousel" data-loop="true" data-items="5" data-margin="80" data-autoplay="true" data-autoplay-timeout="5000" data-smart-speed="2000" data-dots="false" data-nav="false" data-nav-speed="false" data-mobile-device="2" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="4" data-ipad-device-nav="false" data-ipad-device-dots="false" data-md-device="5" data-md-device-nav="false" data-md-device-dots="false">
+            <div class="partner-item">
+                <a href="#"><img src="img/s1.jpg" alt="Partner Image"></a>
+            </div>
+            <div class="partner-item">
+                <a href="#"><img src="img/s2.jpg" alt="Partner Image"></a>
+            </div>
+            <div class="partner-item">
+                <a href="#"><img src="img/s3.jpg" alt="Partner Image"></a>
+            </div>
+            <div class="partner-item">
+                <a href="#"><img src="img/s4.jpg" alt="Partner Image"></a>
+            </div>
+            <div class="partner-item">
+                <a href="#"><img src="img/s5.jpg" alt="Partner Image"></a>
             </div>
         </div>
-<!-- Courses, Counter, Events, Team, Calltoaction, Latest News, Products, Testimonial, Partner sections continue... -->
+    </div>
+</div>
 
 <footer id="rs-footer" class="rs-footer" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);">
     
@@ -146,18 +145,18 @@
                     <div class="footer-widget">
                         <h5 class="footer-widget-title">Quick Navigation</h5>
                         <ul class="footer-links">
-                                                    <li><a href="/about"><i class="fa fa-angle-right"></i> About Compassionate Capitalism</a></li>
+                            <li><a href="/about"><i class="fa fa-angle-right"></i> About Compassionate Capitalism</a></li>
                             <li><a href="/features"><i class="fa fa-angle-right"></i> 7 Core Features</a></li>
                             <li><a href="/advances"><i class="fa fa-angle-right"></i> 5 Significant Advances</a></li>
                             <li><a href="/rankings"><i class="fa fa-angle-right"></i> Development Rankings</a></li>
                             <li><a href="/investment"><i class="fa fa-angle-right"></i> Investment Opportunities</a></li>
                             <li><a href="/channels"><i class="fa fa-angle-right"></i> 28 Development Channels</a></li>
                             <li><a href="/contact"><i class="fa fa-angle-right"></i> Contact Support</a></li>
-                                         </ul>
+                        </ul>
                     </div>
                 </div>
 
-                <!-- Newsletter -->
+                <!-- Newsletter & Legal Links -->
                 <div class="col-lg-3 col-md-6 col-sm-12">
                     <div class="footer-widget">
                         <h5 class="footer-widget-title">Stay Updated</h5>
@@ -189,16 +188,18 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="copyright">
-                        <p>© <span id="currentYear"></span> <a href="#">RedirectMall</a>. All rights reserved.</p>
+                        <p>© <span id="currentYear"></span> <a href="/">RedirectMall</a>. All rights reserved.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="footer-legal">
-                        <a href="#">Privacy Policy</a>
+                        <a href="/privacy-policy">Privacy Policy</a>
                         <span class="separator">|</span>
-                        <a href="#">Terms of Service</a>
+                        <a href="/terms">UPAP Terms & Conditions</a>
                         <span class="separator">|</span>
-                        <a href="#">Cookie Policy</a>
+                        <a href="/user-terms">CC App User Terms</a>
+                        <span class="separator">|</span>
+                        <a href="#" id="cookieSettingsLink">Cookie Policy</a>
                     </div>
                 </div>
             </div>
@@ -206,76 +207,83 @@
     </div>
 </footer>
 
+<!-- Cookie Consent Modal -->
+<div id="cookieConsentModal" class="cookie-modal" style="display: none;">
+    <div class="cookie-modal-content">
+        <div class="cookie-modal-header">
+            <h3><i class="fa fa-cookie-bite"></i> Cookie Preferences</h3>
+            <button class="cookie-close" id="closeCookieModal">&times;</button>
+        </div>
+        <div class="cookie-modal-body">
+            <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies.</p>
+            <div class="cookie-preferences">
+                <div class="cookie-preference">
+                    <label class="cookie-switch">
+                        <input type="checkbox" id="essentialCookies" checked disabled>
+                        <span class="cookie-slider"></span>
+                    </label>
+                    <div class="cookie-preference-info">
+                        <h4>Essential Cookies</h4>
+                        <p>Required for the website to function properly. Cannot be disabled.</p>
+                    </div>
+                </div>
+                <div class="cookie-preference">
+                    <label class="cookie-switch">
+                        <input type="checkbox" id="functionalCookies">
+                        <span class="cookie-slider"></span>
+                    </label>
+                    <div class="cookie-preference-info">
+                        <h4>Functional Cookies</h4>
+                        <p>Enable enhanced functionality and personalization.</p>
+                    </div>
+                </div>
+                <div class="cookie-preference">
+                    <label class="cookie-switch">
+                        <input type="checkbox" id="analyticsCookies">
+                        <span class="cookie-slider"></span>
+                    </label>
+                    <div class="cookie-preference-info">
+                        <h4>Analytics Cookies</h4>
+                        <p>Help us understand how visitors interact with our website.</p>
+                    </div>
+                </div>
+                <div class="cookie-preference">
+                    <label class="cookie-switch">
+                        <input type="checkbox" id="marketingCookies">
+                        <span class="cookie-slider"></span>
+                    </label>
+                    <div class="cookie-preference-info">
+                        <h4>Marketing Cookies</h4>
+                        <p>Used to deliver relevant advertisements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cookie-modal-footer">
+            <button class="cookie-btn cookie-btn-secondary" id="declineCookies">Decline Non-Essential</button>
+            <button class="cookie-btn cookie-btn-primary" id="acceptCookies">Accept All</button>
+            <button class="cookie-btn cookie-btn-save" id="saveCookiePrefs">Save Preferences</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cookie Banner (initially shown) -->
+<div id="cookieBanner" class="cookie-banner" style="display: none;">
+    <div class="cookie-banner-content">
+        <div class="cookie-banner-text">
+            <i class="fa fa-cookie"></i>
+            <p>We use cookies to improve your experience. By using our site, you accept our <a href="#" id="cookiePolicyLink">Cookie Policy</a>.</p>
+        </div>
+        <div class="cookie-banner-buttons">
+            <button class="cookie-banner-btn cookie-customize" id="customizeCookies">Customize</button>
+            <button class="cookie-banner-btn cookie-accept" id="acceptAllCookies">Accept All</button>
+        </div>
+    </div>
+</div>
+
 <!-- Scroll to Top Button -->
 <div id="scrollToTop">
     <i class="fa fa-arrow-up"></i>
-</div>
-
-<!-- ============================================ -->
-<!-- AI CHAT WIDGET - BOTTOM RIGHT                -->
-<!-- ============================================ -->
-
-<!-- AI Chat Button -->
-<div class="ai-chat-button" id="aiChatButton">
-    <div class="chat-icon">
-        <i class="fa fa-commenting-o"></i>
-        <span class="notification-badge" id="notificationBadge">1</span>
-    </div>
-    <div class="chat-label">
-        <span>Chat with AI</span>
-    </div>
-</div>
-
-<!-- AI Chat Modal -->
-<div class="ai-chat-modal" id="aiChatModal">
-    <div class="chat-modal-header">
-        <div class="chat-header-info">
-            <div class="ai-avatar">
-                <i class="fa fa-robot"></i>
-            </div>
-            <div class="ai-info">
-                <h4>AI Assistant</h4>
-                <p>Powered by AI | Online</p>
-            </div>
-        </div>
-        <button class="close-chat" id="closeChat">
-            <i class="fa fa-times"></i>
-        </button>
-    </div>
-    
-    <div class="chat-modal-body" id="chatMessages">
-        <div class="message received">
-            <div class="message-content">
-                <p>Hello! 👋 I'm your AI assistant. How can I help you today?</p>
-                <span class="message-time">Just now</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="chat-modal-footer">
-        <div class="chat-input-wrapper">
-            <textarea 
-                id="chatInput" 
-                placeholder="Type your message here..." 
-                rows="1"
-                maxlength="500"
-            ></textarea>
-            <button class="send-btn" id="sendMessage">
-                <i class="fa fa-paper-plane"></i>
-            </button>
-        </div>
-        <div class="chat-options">
-            <button class="option-btn" data-question="What is Compassionate Capitalism?">
-                <i class="fa fa-question-circle"></i> What is CC?
-            </button>
-            <button class="option-btn" data-question="Tell me about your services">
-                <i class="fa fa-briefcase"></i> Services
-            </button>
-            <button class="option-btn" data-question="How can I contact support?">
-                <i class="fa fa-headphones"></i> Support
-            </button>
-        </div>
-    </div>
 </div>
 
 <!-- SVG Gradient Definition -->
@@ -289,161 +297,6 @@
 </svg>
 
 <style>
-/* ============================================ */
-/* LIGHTNING ANIMATIONS FOR FOOTER              */
-/* ============================================ */
-
-.footer-lightning-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.footer-lightning {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.footer-lightning svg {
-    width: 100%;
-    height: 100%;
-}
-
-.footer-lightning svg polyline {
-    stroke: url(#footerGrad);
-    stroke-width: 2;
-    fill: none;
-    stroke-dasharray: 500;
-    stroke-dashoffset: 500;
-}
-
-/* Lightning 1 - Top Left */
-.lightning-1 {
-    top: 0;
-    left: 0;
-    width: 300px;
-    height: 200px;
-    animation: lightningFlash1 8s infinite;
-}
-
-.lightning-1 svg polyline {
-    animation: lightningStrike1 0.8s ease-out forwards;
-}
-
-/* Lightning 2 - Top Right */
-.lightning-2 {
-    top: 0;
-    right: 0;
-    width: 300px;
-    height: 200px;
-    animation: lightningFlash2 10s infinite;
-}
-
-.lightning-2 svg polyline {
-    animation: lightningStrike2 0.6s ease-out forwards;
-}
-
-/* Lightning 3 - Center */
-.lightning-3 {
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 250px;
-    height: 180px;
-    animation: lightningFlash3 12s infinite;
-}
-
-.lightning-3 svg polyline {
-    animation: lightningStrike3 0.7s ease-out forwards;
-}
-
-/* Lightning Keyframes */
-@keyframes lightningFlash1 {
-    0%, 92%, 94%, 100% {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-    93% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes lightningFlash2 {
-    0%, 94%, 96%, 100% {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    95% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes lightningFlash3 {
-    0%, 96%, 98%, 100% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    97% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes lightningStrike1 {
-    0% {
-        stroke-dashoffset: 500;
-        stroke-width: 2;
-    }
-    50% {
-        stroke-width: 4;
-    }
-    100% {
-        stroke-dashoffset: 0;
-        stroke-width: 2;
-    }
-}
-
-@keyframes lightningStrike2 {
-    0% {
-        stroke-dashoffset: 500;
-        stroke-width: 2;
-    }
-    60% {
-        stroke-width: 5;
-    }
-    100% {
-        stroke-dashoffset: 0;
-        stroke-width: 2;
-    }
-}
-
-@keyframes lightningStrike3 {
-    0% {
-        stroke-dashoffset: 500;
-        stroke-width: 2;
-    }
-    40% {
-        stroke-width: 4;
-    }
-    100% {
-        stroke-dashoffset: 0;
-        stroke-width: 2;
-    }
-}
-
-/* Glow effect on lightning */
-.footer-lightning svg polyline {
-    filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5));
-}
-
 /* ============================================ */
 /* FOOTER STYLES - VR BLACK GRADIENT (PRESERVED) */
 /* ============================================ */
@@ -484,6 +337,46 @@
     z-index: 0;
 }
 
+/* Lightning Animations */
+.footer-lightning-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.footer-lightning {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.footer-lightning svg {
+    width: 100%;
+    height: 100%;
+}
+
+.footer-lightning svg polyline {
+    stroke: url(#footerGrad);
+    stroke-width: 2;
+    fill: none;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.5));
+}
+
+.lightning-1 { top: 0; left: 0; width: 300px; height: 200px; animation: lightningFlash1 8s infinite; }
+.lightning-2 { top: 0; right: 0; width: 300px; height: 200px; animation: lightningFlash2 10s infinite; }
+.lightning-3 { top: 20%; left: 50%; transform: translateX(-50%); width: 250px; height: 180px; animation: lightningFlash3 12s infinite; }
+
+@keyframes lightningFlash1 { 0%,92%,94%,100% { opacity:0; transform:translateX(-50px); } 93% { opacity:1; transform:translateX(0); } }
+@keyframes lightningFlash2 { 0%,94%,96%,100% { opacity:0; transform:translateX(50px); } 95% { opacity:1; transform:translateX(0); } }
+@keyframes lightningFlash3 { 0%,96%,98%,100% { opacity:0; transform:scale(0.8); } 97% { opacity:1; transform:scale(1); } }
+
 /* Contact Bar */
 .footer-contact-bar {
     background: rgba(0, 0, 0, 0.3);
@@ -501,9 +394,7 @@
     transition: transform 0.3s ease;
 }
 
-.contact-card:hover {
-    transform: translateY(-5px);
-}
+.contact-card:hover { transform: translateY(-5px); }
 
 .contact-icon {
     width: 55px;
@@ -521,307 +412,67 @@
     transform: scale(1.1);
 }
 
-.contact-icon i {
-    font-size: 24px;
-    color: #667eea;
-}
+.contact-icon i { font-size: 24px; color: #667eea; }
+.contact-card:hover .contact-icon i { color: #fff; }
+.contact-info h4 { font-size: 18px; font-weight: 600; margin: 0 0 5px 0; color: #fff; }
+.contact-info p { font-size: 14px; margin: 0; line-height: 1.5; color: #b0b0b0; }
 
-.contact-card:hover .contact-icon i {
-    color: #fff;
-}
-
-.contact-info h4 {
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0 0 5px 0;
-    color: #fff;
-}
-
-.contact-info p {
-    font-size: 14px;
-    margin: 0;
-    line-height: 1.5;
-    color: #b0b0b0;
-}
-
-/* Main Footer Content */
-.footer-main {
-    padding: 60px 0 40px;
-    position: relative;
-    z-index: 2;
-}
-
-.footer-widget {
-    margin-bottom: 30px;
-}
-
-.footer-logo {
-    margin-bottom: 20px;
-}
-
-.footer-logo img {
-    max-height: 50px;
-    width: auto;
-}
-
-.footer-description {
-    font-size: 14px;
-    line-height: 1.7;
-    color: #b0b0b0;
-    margin-bottom: 20px;
-}
-
-.footer-certification {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.cert-badge {
-    background: rgba(102, 126, 234, 0.15);
-    border: 1px solid rgba(102, 126, 234, 0.3);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 12px;
-    color: #667eea;
-}
-
-.footer-widget-title {
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 25px;
-    position: relative;
-    padding-bottom: 12px;
-}
-
-.footer-widget-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 3px;
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    border-radius: 2px;
-}
+/* Footer Main */
+.footer-main { padding: 60px 0 40px; position: relative; z-index: 2; }
+.footer-widget { margin-bottom: 30px; }
+.footer-logo { margin-bottom: 20px; }
+.footer-logo img { max-height: 50px; width: auto; }
+.footer-description { font-size: 14px; line-height: 1.7; color: #b0b0b0; margin-bottom: 20px; }
+.footer-certification { display: flex; gap: 10px; flex-wrap: wrap; }
+.cert-badge { background: rgba(102, 126, 234, 0.15); border: 1px solid rgba(102, 126, 234, 0.3); padding: 5px 12px; border-radius: 20px; font-size: 12px; color: #667eea; }
+.footer-widget-title { color: #fff; font-size: 18px; font-weight: 600; margin-bottom: 25px; position: relative; padding-bottom: 12px; }
+.footer-widget-title::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px; }
 
 /* Recent Posts */
-.recent-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.recent-post {
-    display: flex;
-    gap: 15px;
-}
-
-.post-date {
-    background: rgba(102, 126, 234, 0.15);
-    border-radius: 8px;
-    text-align: center;
-    min-width: 55px;
-    padding: 8px;
-    transition: all 0.3s ease;
-}
-
-.recent-post:hover .post-date {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-}
-
-.post-date .day {
-    display: block;
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-    line-height: 1.2;
-}
-
-.post-date .month {
-    display: block;
-    font-size: 11px;
-    color: #b0b0b0;
-    text-transform: uppercase;
-}
-
-.recent-post:hover .post-date .month {
-    color: #fff;
-}
-
-.post-content h6 {
-    margin: 0 0 5px 0;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.post-content h6 a {
-    color: #e0e0e0;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.post-content h6 a:hover {
-    color: #667eea;
-}
-
-.post-meta {
-    font-size: 11px;
-    color: #888;
-}
+.recent-posts { display: flex; flex-direction: column; gap: 20px; }
+.recent-post { display: flex; gap: 15px; }
+.post-date { background: rgba(102, 126, 234, 0.15); border-radius: 8px; text-align: center; min-width: 55px; padding: 8px; transition: all 0.3s ease; }
+.recent-post:hover .post-date { background: linear-gradient(135deg, #667eea, #764ba2); }
+.post-date .day { display: block; font-size: 20px; font-weight: 700; color: #fff; line-height: 1.2; }
+.post-date .month { display: block; font-size: 11px; color: #b0b0b0; text-transform: uppercase; }
+.recent-post:hover .post-date .month { color: #fff; }
+.post-content h6 { margin: 0 0 5px 0; font-size: 14px; font-weight: 500; }
+.post-content h6 a { color: #e0e0e0; text-decoration: none; transition: color 0.3s ease; }
+.post-content h6 a:hover { color: #667eea; }
+.post-meta { font-size: 11px; color: #888; }
 
 /* Footer Links */
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.footer-links li {
-    margin-bottom: 12px;
-}
-
-.footer-links li a {
-    color: #b0b0b0;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-    font-size: 14px;
-}
-
-.footer-links li a i {
-    margin-right: 8px;
-    font-size: 12px;
-    color: #667eea;
-}
-
-.footer-links li a:hover {
-    color: #667eea;
-    transform: translateX(5px);
-}
+.footer-links { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin-bottom: 12px; }
+.footer-links li a { color: #b0b0b0; text-decoration: none; transition: all 0.3s ease; display: inline-block; font-size: 14px; }
+.footer-links li a i { margin-right: 8px; font-size: 12px; color: #667eea; }
+.footer-links li a:hover { color: #667eea; transform: translateX(5px); }
 
 /* Newsletter */
-.newsletter-text {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #b0b0b0;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.newsletter-input {
-    flex: 1;
-    padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 30px;
-    color: #fff;
-    font-size: 14px;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-.newsletter-input:focus {
-    border-color: #667eea;
-    background: rgba(255, 255, 255, 0.12);
-}
-
-.newsletter-input::placeholder {
-    color: #888;
-}
-
-.newsletter-btn {
-    width: 44px;
-    height: 44px;
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.newsletter-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(102, 126, 234, 0.5);
-}
+.newsletter-text { font-size: 14px; line-height: 1.6; color: #b0b0b0; margin-bottom: 20px; }
+.input-group { display: flex; gap: 10px; margin-bottom: 25px; }
+.newsletter-input { flex: 1; padding: 12px 15px; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 30px; color: #fff; font-size: 14px; outline: none; transition: all 0.3s ease; }
+.newsletter-input:focus { border-color: #667eea; background: rgba(255, 255, 255, 0.12); }
+.newsletter-input::placeholder { color: #888; }
+.newsletter-btn { width: 44px; height: 44px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 50%; color: #fff; cursor: pointer; transition: all 0.3s ease; }
+.newsletter-btn:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(102, 126, 234, 0.5); }
 
 /* Social Links */
-.social-links {
-    display: flex;
-    gap: 12px;
-}
-
-.social-link {
-    width: 36px;
-    height: 36px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #b0b0b0;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.social-link:hover {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: #fff;
-    transform: translateY(-3px);
-}
+.social-links { display: flex; gap: 12px; }
+.social-link { width: 36px; height: 36px; background: rgba(255, 255, 255, 0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #b0b0b0; text-decoration: none; transition: all 0.3s ease; }
+.social-link:hover { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; transform: translateY(-3px); }
 
 /* Footer Bottom */
-.footer-bottom {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 20px 0;
-    position: relative;
-    z-index: 2;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
+.footer-bottom { background: rgba(0, 0, 0, 0.4); padding: 20px 0; position: relative; z-index: 2; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+.copyright p { margin: 0; font-size: 13px; color: #888; }
+.copyright a { color: #667eea; text-decoration: none; }
+.copyright a:hover { text-decoration: underline; }
+.footer-legal { text-align: right; }
+.footer-legal a { color: #888; text-decoration: none; font-size: 13px; transition: color 0.3s ease; }
+.footer-legal a:hover { color: #667eea; }
+.footer-legal .separator { margin: 0 12px; color: #555; }
 
-.copyright p {
-    margin: 0;
-    font-size: 13px;
-    color: #888;
-}
-
-.copyright a {
-    color: #667eea;
-    text-decoration: none;
-}
-
-.copyright a:hover {
-    text-decoration: underline;
-}
-
-.footer-legal {
-    text-align: right;
-}
-
-.footer-legal a {
-    color: #888;
-    text-decoration: none;
-    font-size: 13px;
-    transition: color 0.3s ease;
-}
-
-.footer-legal a:hover {
-    color: #667eea;
-}
-
-.footer-legal .separator {
-    margin: 0 12px;
-    color: #555;
-}
-
-/* Scroll to Top Button */
+/* Scroll to Top */
 #scrollToTop {
     position: fixed;
     bottom: 30px;
@@ -841,567 +492,398 @@
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
+#scrollToTop.show { opacity: 1; visibility: visible; }
+#scrollToTop:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4); }
 
-#scrollToTop.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-#scrollToTop:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-}
-
-/* ============================================ */
-/* AI CHAT WIDGET STYLES - BOTTOM RIGHT         */
-/* ============================================ */
-
-.ai-chat-button {
+/* Cookie Banner */
+.cookie-banner {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 1000;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 12px 20px;
-    border-radius: 50px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    animation: pulse 2s infinite;
-}
-
-.ai-chat-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.chat-icon {
-    position: relative;
-    color: white;
-    font-size: 24px;
-}
-
-.notification-badge {
-    position: absolute;
-    top: -8px;
-    right: -12px;
-    background: #ff4757;
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    font-size: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: bounce 1s infinite;
-}
-
-.chat-label span {
-    color: white;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.ai-chat-modal {
-    position: fixed;
-    bottom: 100px;
-    right: 30px;
-    width: 380px;
-    height: 500px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    display: none;
-    flex-direction: column;
-    z-index: 1001;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: #1a1a2e;
+    border-radius: 12px;
+    padding: 16px 24px;
+    z-index: 10000;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    border: 1px solid rgba(102,126,234,0.3);
     animation: slideUp 0.3s ease;
-    overflow: hidden;
 }
-
-.ai-chat-modal.active {
-    display: flex;
-}
-
-.chat-modal-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 15px 20px;
+.cookie-banner-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: white;
+    flex-wrap: wrap;
+    gap: 15px;
 }
-
-.chat-header-info {
+.cookie-banner-text {
     display: flex;
     align-items: center;
     gap: 12px;
+    flex: 1;
+}
+.cookie-banner-text i {
+    font-size: 24px;
+    color: #667eea;
+}
+.cookie-banner-text p {
+    margin: 0;
+    color: #e0e0e0;
+    font-size: 14px;
+}
+.cookie-banner-text a {
+    color: #667eea;
+    text-decoration: none;
+}
+.cookie-banner-text a:hover {
+    text-decoration: underline;
+}
+.cookie-banner-buttons {
+    display: flex;
+    gap: 12px;
+}
+.cookie-banner-btn {
+    padding: 8px 20px;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.cookie-customize {
+    background: transparent;
+    border: 1px solid #667eea;
+    color: #667eea;
+}
+.cookie-customize:hover {
+    background: rgba(102,126,234,0.1);
+}
+.cookie-accept {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+.cookie-accept:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(102,126,234,0.4);
 }
 
-.ai-avatar {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
+/* Cookie Modal */
+.cookie-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-}
-
-.ai-info h4 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: 600;
-}
-
-.ai-info p {
-    margin: 0;
-    font-size: 12px;
-    opacity: 0.9;
-}
-
-.close-chat {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    padding: 5px;
-    transition: transform 0.2s;
-}
-
-.close-chat:hover {
-    transform: rotate(90deg);
-}
-
-.chat-modal-body {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    background: #f8f9fa;
-}
-
-.message {
-    margin-bottom: 15px;
-    display: flex;
+    z-index: 10001;
     animation: fadeIn 0.3s ease;
 }
-
-.message.received {
-    justify-content: flex-start;
+.cookie-modal-content {
+    background: #1a1a2e;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border: 1px solid rgba(102,126,234,0.3);
+    animation: scaleIn 0.3s ease;
 }
-
-.message.sent {
-    justify-content: flex-end;
+.cookie-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
-
-.message-content {
-    max-width: 80%;
-    padding: 10px 15px;
-    border-radius: 10px;
+.cookie-modal-header h3 {
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+}
+.cookie-modal-header h3 i {
+    color: #667eea;
+    margin-right: 10px;
+}
+.cookie-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+.cookie-close:hover { color: #667eea; }
+.cookie-modal-body { padding: 25px; }
+.cookie-modal-body > p { color: #b0b0b0; margin-bottom: 20px; line-height: 1.6; }
+.cookie-preferences { display: flex; flex-direction: column; gap: 20px; }
+.cookie-preference {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 12px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 12px;
+}
+.cookie-preference-info h4 { margin: 0 0 5px 0; color: #fff; font-size: 15px; }
+.cookie-preference-info p { margin: 0; color: #888; font-size: 12px; line-height: 1.5; }
+.cookie-switch {
     position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    flex-shrink: 0;
 }
-
-.message.received .message-content {
-    background: white;
-    color: #333;
-    border: 1px solid #e0e0e0;
-}
-
-.message.sent .message-content {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
-
-.message-time {
-    font-size: 10px;
-    opacity: 0.7;
-    display: block;
-    margin-top: 5px;
-}
-
-.chat-modal-footer {
-    padding: 15px;
-    background: white;
-    border-top: 1px solid #e0e0e0;
-}
-
-.chat-input-wrapper {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-#chatInput {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 20px;
-    resize: none;
-    font-family: inherit;
-    font-size: 14px;
-    max-height: 80px;
-}
-
-#chatInput:focus {
-    outline: none;
-    border-color: #667eea;
-}
-
-.send-btn {
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    border-radius: 50%;
-    color: white;
+.cookie-switch input { opacity: 0; width: 0; height: 0; }
+.cookie-slider {
+    position: absolute;
     cursor: pointer;
-    transition: transform 0.2s;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #444;
+    transition: 0.3s;
+    border-radius: 24px;
 }
-
-.send-btn:hover {
-    transform: scale(1.05);
+.cookie-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
 }
-
-.chat-options {
+input:checked + .cookie-slider { background: linear-gradient(135deg, #667eea, #764ba2); }
+input:checked + .cookie-slider:before { transform: translateX(26px); }
+input:disabled + .cookie-slider { opacity: 0.6; cursor: not-allowed; }
+.cookie-modal-footer {
+    padding: 20px 25px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 12px;
 }
-
-.option-btn {
-    padding: 5px 12px;
-    background: #f0f0f0;
+.cookie-btn {
+    padding: 10px 24px;
+    border-radius: 30px;
     border: none;
-    border-radius: 20px;
-    font-size: 12px;
     cursor: pointer;
-    transition: all 0.2s;
-    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
-
-.option-btn:hover {
-    background: #667eea;
+.cookie-btn-primary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
 }
-
-.typing-indicator {
-    display: flex;
-    gap: 4px;
-    padding: 10px 15px;
+.cookie-btn-secondary {
+    background: transparent;
+    border: 1px solid #667eea;
+    color: #667eea;
 }
-
-.typing-indicator span {
-    width: 8px;
-    height: 8px;
-    background: #999;
-    border-radius: 50%;
-    animation: typing 1.4s infinite;
+.cookie-btn-save {
+    background: #2d2d44;
+    color: white;
 }
-
-.typing-indicator span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.typing-indicator span:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-/* Animations */
-@keyframes pulse {
-    0% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
-    50% { box-shadow: 0 4px 20px rgba(102, 126, 234, 0.6); }
-    100% { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); }
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-3px); }
-}
+.cookie-btn-primary:hover, .cookie-btn-save:hover { transform: scale(1.02); }
+.cookie-btn-secondary:hover { background: rgba(102,126,234,0.1); }
 
 @keyframes slideUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
-
-@keyframes typing {
-    0%, 60%, 100% { transform: translateY(0); }
-    30% { transform: translateY(-10px); }
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 /* Responsive */
 @media (max-width: 991px) {
-    .footer-main {
-        padding: 40px 0 20px;
-    }
-    .footer-widget {
-        margin-bottom: 40px;
-    }
+    .footer-main { padding: 40px 0 20px; }
+    .footer-widget { margin-bottom: 40px; }
 }
-
 @media (max-width: 768px) {
-    .footer-contact-bar {
-        padding: 30px 0;
-    }
-    .contact-card {
-        justify-content: center;
-        text-align: center;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 20px;
-    }
-    .footer-legal {
-        text-align: center;
-        margin-top: 10px;
-    }
-    .copyright {
-        text-align: center;
-    }
-    .footer-widget-title::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    .footer-widget {
-        text-align: center;
-    }
-    .social-links {
-        justify-content: center;
-    }
-    .footer-certification {
-        justify-content: center;
-    }
-    .ai-chat-modal {
-        width: calc(100vw - 60px);
-        height: calc(100vh - 120px);
-        bottom: 80px;
-        right: 30px;
-        left: auto;
-    }
-    .ai-chat-button {
-        bottom: 20px;
-        right: 20px;
-        left: auto;
-        padding: 10px 16px;
-    }
-    .chat-label span { font-size: 12px; }
-    .chat-icon { font-size: 20px; }
-    #scrollToTop {
-        bottom: 20px;
-        left: 20px;
-    }
-    
-    /* Lightning responsive */
-    .lightning-1, .lightning-2, .lightning-3 {
-        transform: scale(0.7);
-    }
+    .footer-contact-bar { padding: 30px 0; }
+    .contact-card { justify-content: center; text-align: center; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+    .footer-legal { text-align: center; margin-top: 10px; }
+    .copyright { text-align: center; }
+    .footer-widget-title::after { left: 50%; transform: translateX(-50%); }
+    .footer-widget { text-align: center; }
+    .social-links { justify-content: center; }
+    .footer-certification { justify-content: center; }
+    .cookie-banner-content { flex-direction: column; text-align: center; }
+    .cookie-banner-buttons { justify-content: center; }
+    .cookie-modal-content { width: 95%; }
+    .lightning-1, .lightning-2, .lightning-3 { transform: scale(0.7); }
 }
-
 @media (max-width: 480px) {
-    .footer-contact-bar {
-        padding: 20px 0;
-    }
-    .footer-main {
-        padding: 30px 0 10px;
-    }
-    .footer-widget-title {
-        font-size: 16px;
-    }
-    
-    /* Hide lightning on very small screens */
-    .footer-lightning-container {
-        display: none;
-    }
+    .footer-lightning-container { display: none; }
+    .cookie-preference { flex-direction: column; align-items: center; text-align: center; }
+    .cookie-modal-footer { flex-direction: column; }
+    .cookie-btn { width: 100%; }
 }
 </style>
 
 <script>
     // ============================================
-    // AI CHAT WIDGET JAVASCRIPT
+    // COOKIE CONSENT MANAGEMENT
     // ============================================
     
     (function() {
-        const chatButton = document.getElementById('aiChatButton');
-        const chatModal = document.getElementById('aiChatModal');
-        const closeChat = document.getElementById('closeChat');
-        const sendButton = document.getElementById('sendMessage');
-        const chatInput = document.getElementById('chatInput');
-        const chatMessages = document.getElementById('chatMessages');
-        const notificationBadge = document.getElementById('notificationBadge');
+        const COOKIE_CONSENT_KEY = 'cookiePreferences';
         
-        let isTyping = false;
-        let sessionId = localStorage.getItem('chatSessionId');
-        
-        if (!sessionId) {
-            sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-            localStorage.setItem('chatSessionId', sessionId);
+        function getCookiePreferences() {
+            const prefs = localStorage.getItem(COOKIE_CONSENT_KEY);
+            if (prefs) {
+                return JSON.parse(prefs);
+            }
+            return null;
         }
         
-        function toggleChat() {
-            if (chatModal) {
-                chatModal.classList.toggle('active');
-                if (chatModal.classList.contains('active')) {
-                    setTimeout(() => chatInput.focus(), 100);
-                    if (notificationBadge) notificationBadge.style.display = 'none';
-                }
+        function setCookiePreferences(preferences) {
+            localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(preferences));
+            applyCookiePreferences(preferences);
+        }
+        
+        function applyCookiePreferences(preferences) {
+            if (preferences.analytics) {
+                console.log('Analytics cookies enabled');
+            }
+            if (preferences.marketing) {
+                console.log('Marketing cookies enabled');
+            }
+            if (preferences.functional) {
+                console.log('Functional cookies enabled');
             }
         }
         
-        function closeChatModal() {
-            if (chatModal) chatModal.classList.remove('active');
+        function showBanner() {
+            const banner = document.getElementById('cookieBanner');
+            if (banner) banner.style.display = 'block';
         }
         
-        if (chatButton) {
-            chatButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                toggleChat();
-            });
+        function hideBanner() {
+            const banner = document.getElementById('cookieBanner');
+            if (banner) banner.style.display = 'none';
         }
         
-        if (closeChat) {
-            closeChat.addEventListener('click', (e) => {
-                e.preventDefault();
-                closeChatModal();
-            });
-        }
-        
-        if (chatInput) {
-            chatInput.addEventListener('input', function() {
-                this.style.height = 'auto';
-                this.style.height = Math.min(this.scrollHeight, 80) + 'px';
-            });
-        }
-        
-        async function sendMessage() {
-            if (!chatInput) return;
-            const message = chatInput.value.trim();
-            if (!message || isTyping) return;
-            
-            addMessage(message, 'sent');
-            chatInput.value = '';
-            chatInput.style.height = 'auto';
-            
-            showTypingIndicator();
-            isTyping = true;
-            
-            try {
-                const response = await fetch('/api/chat/send', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ message: message, sessionId: sessionId })
-                });
-                
-                let reply;
-                if (response.ok) {
-                    const data = await response.json();
-                    reply = data.success ? data.reply : getFallbackResponse(message);
-                } else {
-                    reply = getFallbackResponse(message);
+        function showModal() {
+            const modal = document.getElementById('cookieConsentModal');
+            if (modal) {
+                const prefs = getCookiePreferences();
+                if (prefs) {
+                    document.getElementById('functionalCookies').checked = prefs.functional;
+                    document.getElementById('analyticsCookies').checked = prefs.analytics;
+                    document.getElementById('marketingCookies').checked = prefs.marketing;
                 }
-                
-                hideTypingIndicator();
-                addMessage(reply, 'received');
-            } catch (error) {
-                console.error('Chat Error:', error);
-                hideTypingIndicator();
-                addMessage(getFallbackResponse(message), 'received');
-            } finally {
-                isTyping = false;
+                modal.style.display = 'flex';
             }
         }
         
-        function getFallbackResponse(message) {
-            const lowerMessage = message.toLowerCase();
-            const responses = {
-                'hello|hi|hey': 'Hello! 👋 How can I assist you with Compassionate Capitalism today?',
-                'what is compassionate capitalism|what is cc': 'Compassionate Capitalism combines free market principles with social responsibility, focusing on ethical business practices and sustainability.',
-                'services|what services': 'We offer investment advisory, business consulting, educational programs, and community development initiatives.',
-                'contact|support': 'Contact us at support@compassionatecapitalism.com or call +1 (345) 909-6565.',
-                'thank|thanks': "You're welcome! Is there anything else I can help with?"
+        function hideModal() {
+            const modal = document.getElementById('cookieConsentModal');
+            if (modal) modal.style.display = 'none';
+        }
+        
+        function acceptAllCookies() {
+            const preferences = {
+                essential: true,
+                functional: true,
+                analytics: true,
+                marketing: true,
+                accepted: true,
+                timestamp: new Date().toISOString()
             };
-            for (const [pattern, response] of Object.entries(responses)) {
-                if (new RegExp(pattern, 'i').test(lowerMessage)) return response;
-            }
-            return "Thank you for your question. Please visit our website or contact support for more information.";
+            setCookiePreferences(preferences);
+            hideBanner();
+            hideModal();
         }
         
-        function addMessage(text, type) {
-            if (!chatMessages) return;
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}`;
-            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            messageDiv.innerHTML = `<div class="message-content"><p>${escapeHtml(text)}</p><span class="message-time">${time}</span></div>`;
-            chatMessages.appendChild(messageDiv);
-            scrollToBottom();
+        function declineNonEssential() {
+            const preferences = {
+                essential: true,
+                functional: false,
+                analytics: false,
+                marketing: false,
+                accepted: true,
+                timestamp: new Date().toISOString()
+            };
+            setCookiePreferences(preferences);
+            hideBanner();
+            hideModal();
         }
         
-        function showTypingIndicator() {
-            if (!chatMessages) return;
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'message received';
-            typingDiv.id = 'typingIndicator';
-            typingDiv.innerHTML = `<div class="message-content"><div class="typing-indicator"><span></span><span></span><span></span></div></div>`;
-            chatMessages.appendChild(typingDiv);
-            scrollToBottom();
+        function savePreferences() {
+            const preferences = {
+                essential: true,
+                functional: document.getElementById('functionalCookies').checked,
+                analytics: document.getElementById('analyticsCookies').checked,
+                marketing: document.getElementById('marketingCookies').checked,
+                accepted: true,
+                timestamp: new Date().toISOString()
+            };
+            setCookiePreferences(preferences);
+            hideBanner();
+            hideModal();
         }
         
-        function hideTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) indicator.remove();
+        // Initialize
+        const existingPrefs = getCookiePreferences();
+        if (!existingPrefs) {
+            showBanner();
+        } else {
+            applyCookiePreferences(existingPrefs);
         }
         
-        function scrollToBottom() {
-            if (chatMessages) chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+        // Event Listeners
+        const acceptAllBtn = document.getElementById('acceptAllCookies');
+        if (acceptAllBtn) acceptAllBtn.addEventListener('click', acceptAllCookies);
         
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
+        const customizeBtn = document.getElementById('customizeCookies');
+        if (customizeBtn) customizeBtn.addEventListener('click', showModal);
         
-        if (sendButton) sendButton.addEventListener('click', sendMessage);
-        if (chatInput) {
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    sendMessage();
-                }
-            });
-        }
-        
-        document.querySelectorAll('.option-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const question = btn.getAttribute('data-question');
-                if (question && chatInput) {
-                    chatInput.value = question;
-                    sendMessage();
-                }
-            });
+        const cookieSettingsLink = document.getElementById('cookieSettingsLink');
+        if (cookieSettingsLink) cookieSettingsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showModal();
         });
         
-        document.addEventListener('click', (e) => {
-            if (chatModal && chatModal.classList.contains('active')) {
-                if (!chatModal.contains(e.target) && !chatButton.contains(e.target)) {
-                    closeChatModal();
-                }
-            }
+        const cookiePolicyLink = document.getElementById('cookiePolicyLink');
+        if (cookiePolicyLink) cookiePolicyLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showModal();
         });
         
-        setTimeout(() => {
-            if (!localStorage.getItem('chatWelcomeShown')) {
-                if (notificationBadge) notificationBadge.style.display = 'flex';
-                localStorage.setItem('chatWelcomeShown', 'true');
+        const closeModalBtn = document.getElementById('closeCookieModal');
+        if (closeModalBtn) closeModalBtn.addEventListener('click', hideModal);
+        
+        const declineCookiesBtn = document.getElementById('declineCookies');
+        if (declineCookiesBtn) declineCookiesBtn.addEventListener('click', declineNonEssential);
+        
+        const acceptCookiesBtn = document.getElementById('acceptCookies');
+        if (acceptCookiesBtn) acceptCookiesBtn.addEventListener('click', acceptAllCookies);
+        
+        const saveCookiePrefsBtn = document.getElementById('saveCookiePrefs');
+        if (saveCookiePrefsBtn) saveCookiePrefsBtn.addEventListener('click', savePreferences);
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('cookieConsentModal');
+            if (modal && modal.style.display === 'flex') {
+                if (e.target === modal) hideModal();
             }
-        }, 2000);
+        });
     })();
     
     // ============================================
