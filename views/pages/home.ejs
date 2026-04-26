@@ -308,102 +308,429 @@
 <!-- Slider Area End -->
 
 <!-- Services Start -->
- <div class="rs-search-courses">
+<div class="rs-search-courses">
     <div class="container">
-        <div class="search-wrapper" style="max-width: 600px; margin: 0 auto;">
-            <input 
-                type="text" 
-                id="liveSearchInput" 
-                class="global-search-input" 
-                placeholder="Start typing to search anything on this page..." 
-                aria-label="Search entire page content"
-                style="width: 100%; padding: 14px 18px; font-size: 16px; border: 1px solid #ddd; border-radius: 4px; background: #fff; outline: none; transition: all 0.2s; box-sizing: border-box;"
-                onfocus="this.style.borderColor='#007bff'; this.style.boxShadow='0 0 0 3px rgba(0,123,255,0.1)'"
-                onblur="this.style.borderColor='#ddd'; this.style.boxShadow='none'"
-            >
+        <div class="search-wrapper" style="max-width: 600px; margin: 0 auto; position: relative;">
+            <div class="search-input-group" style="position: relative;">
+                <i class="fa fa-search" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #999; font-size: 18px; z-index: 1;"></i>
+                <input 
+                    type="text" 
+                    id="liveSearchInput" 
+                    class="global-search-input" 
+                    placeholder="Search anything on this page... (Ctrl+F)" 
+                    aria-label="Search entire page content"
+                    autocomplete="off"
+                    style="width: 100%; padding: 14px 18px 14px 45px; font-size: 16px; border: 2px solid #e0e0e0; border-radius: 50px; background: #fff; outline: none; transition: all 0.3s ease; box-sizing: border-box;"
+                >
+                <button id="clearSearchBtn" class="clear-search-btn" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #999; cursor: pointer; display: none; font-size: 18px; padding: 5px;">
+                    <i class="fa fa-times-circle"></i>
+                </button>
+            </div>
+            <div id="searchStats" class="search-stats" style="text-align: center; margin-top: 10px; font-size: 13px; color: #666; display: none;">
+                <span id="matchCount">0</span> matches found
+            </div>
         </div>
     </div>
 </div>
 
-<script>
-    const searchInput = document.getElementById('liveSearchInput');
-    let debounceTimer;
-
-    // Function to clear all highlights
-    function clearHighlights() {
-        const highlighted = document.querySelectorAll('.search-highlight');
-        highlighted.forEach(el => {
-            const parent = el.parentNode;
-            parent.replaceChild(document.createTextNode(el.textContent), el);
-            parent.normalize();
-        });
+<style>
+    .global-search-input:focus {
+        border-color: #DC0028 !important;
+        box-shadow: 0 0 0 3px rgba(220, 0, 40, 0.1) !important;
     }
-
-    // Function to highlight text in the page
-    function highlightText(searchTerm) {
-        if (!searchTerm || searchTerm.trim() === '') {
-            clearHighlights();
-            return;
+    
+    .global-search-input:hover {
+        border-color: #DC0028;
+    }
+    
+    .search-highlight mark {
+        background: #ffeb3b;
+        color: #DC0028;
+        padding: 2px 4px;
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    
+    .search-highlight mark.current {
+        background: #DC0028;
+        color: white;
+        box-shadow: 0 0 0 2px #DC0028, 0 2px 4px rgba(0,0,0,0.2);
+        transform: scale(1.02);
+    }
+    
+    .search-stats {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    .clear-search-btn:hover {
+        color: #DC0028 !important;
+    }
+    
+    /* Navigation buttons */
+    .search-navigation {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        background: white;
+        border-radius: 40px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        display: flex;
+        z-index: 1000;
+        overflow: hidden;
+        border: 1px solid #e0e0e0;
+        display: none;
+    }
+    
+    .search-nav-btn {
+        background: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .search-nav-btn:hover {
+        background: #f5f5f5;
+    }
+    
+    .search-nav-btn.prev-btn {
+        border-right: 1px solid #e0e0e0;
+    }
+    
+    .search-nav-btn.next-btn {
+        border-left: 1px solid #e0e0e0;
+    }
+    
+    .search-nav-btn i {
+        font-size: 12px;
+        color: #DC0028;
+    }
+    
+    .search-nav-btn span {
+        color: #333;
+    }
+    
+    @media (max-width: 768px) {
+        .search-navigation {
+            bottom: 80px;
+            right: 20px;
         }
+        .search-nav-btn {
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+    }
+</style>
 
-        clearHighlights();
+<!-- Search Navigation Buttons -->
+<div class="search-navigation" id="searchNavigation">
+    <button class="search-nav-btn prev-btn" id="prevMatchBtn">
+        <i class="fa fa-chevron-up"></i>
+        <span>Previous</span>
+    </button>
+    <button class="search-nav-btn next-btn" id="nextMatchBtn">
+        <span>Next</span>
+        <i class="fa fa-chevron-down"></i>
+    </button>
+</div>
 
-        const walker = document.createTreeWalker(
-            document.body,
-            NodeFilter.SHOW_TEXT,
-            {
-                acceptNode: function(node) {
-                    if (node.parentElement.tagName === 'SCRIPT' || 
-                        node.parentElement.tagName === 'STYLE' ||
-                        node.parentElement.classList?.contains('search-highlight') ||
-                        node.parentElement.id === 'liveSearchInput') {
-                        return NodeFilter.FILTER_REJECT;
+<script>
+    (function() {
+        const searchInput = document.getElementById('liveSearchInput');
+        const clearBtn = document.getElementById('clearSearchBtn');
+        const searchStats = document.getElementById('searchStats');
+        const matchCountSpan = document.getElementById('matchCount');
+        const searchNavigation = document.getElementById('searchNavigation');
+        const prevMatchBtn = document.getElementById('prevMatchBtn');
+        const nextMatchBtn = document.getElementById('nextMatchBtn');
+        
+        let currentMatches = [];
+        let currentMatchIndex = -1;
+        let debounceTimer;
+        let isHighlighting = false;
+        
+        // Helper function to escape regex special characters
+        function escapeRegex(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+        
+        // Function to clear all highlights
+        function clearHighlights() {
+            const highlighted = document.querySelectorAll('.search-highlight');
+            highlighted.forEach(el => {
+                const parent = el.parentNode;
+                if (parent) {
+                    parent.replaceChild(document.createTextNode(el.textContent), el);
+                    parent.normalize();
+                }
+            });
+            currentMatches = [];
+            currentMatchIndex = -1;
+            if (searchStats) searchStats.style.display = 'none';
+            if (searchNavigation) searchNavigation.style.display = 'none';
+        }
+        
+        // Function to get all text nodes excluding script/style tags and the search input
+        function getTextNodes() {
+            const walker = document.createTreeWalker(
+                document.body,
+                NodeFilter.SHOW_TEXT,
+                {
+                    acceptNode: function(node) {
+                        // Exclude script, style, and the search input area
+                        if (node.parentElement.tagName === 'SCRIPT' || 
+                            node.parentElement.tagName === 'STYLE' ||
+                            node.parentElement.tagName === 'NOSCRIPT' ||
+                            node.parentElement.classList?.contains('search-highlight') ||
+                            node.parentElement.id === 'liveSearchInput' ||
+                            node.parentElement.closest('.rs-search-courses')) {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        // Exclude empty text nodes
+                        if (node.nodeValue.trim() === '') {
+                            return NodeFilter.FILTER_REJECT;
+                        }
+                        return NodeFilter.FILTER_ACCEPT;
                     }
-                    return NodeFilter.FILTER_ACCEPT;
+                }
+            );
+            
+            const textNodes = [];
+            while (walker.nextNode()) {
+                textNodes.push(walker.currentNode);
+            }
+            return textNodes;
+        }
+        
+        // Function to find all matches and highlight them
+        function highlightText(searchTerm) {
+            if (isHighlighting) return;
+            isHighlighting = true;
+            
+            try {
+                if (!searchTerm || searchTerm.trim() === '') {
+                    clearHighlights();
+                    if (clearBtn) clearBtn.style.display = 'none';
+                    isHighlighting = false;
+                    return;
+                }
+                
+                clearHighlights();
+                
+                const escapedTerm = escapeRegex(searchTerm);
+                const regex = new RegExp(`(${escapedTerm})`, 'gi');
+                const textNodes = getTextNodes();
+                
+                let matchCount = 0;
+                const newMatches = [];
+                
+                textNodes.forEach(node => {
+                    const text = node.nodeValue;
+                    if (regex.test(text)) {
+                        const span = document.createElement('span');
+                        span.className = 'search-highlight';
+                        const replacedHtml = text.replace(regex, (match) => {
+                            matchCount++;
+                            return `<mark data-match-index="${matchCount - 1}">${match}</mark>`;
+                        });
+                        span.innerHTML = replacedHtml;
+                        node.parentNode.replaceChild(span, node);
+                    }
+                });
+                
+                // Collect all mark elements
+                const marks = document.querySelectorAll('.search-highlight mark');
+                marks.forEach((mark, idx) => {
+                    mark.setAttribute('data-match-index', idx);
+                    newMatches.push(mark);
+                });
+                
+                currentMatches = newMatches;
+                
+                // Update stats display
+                if (matchCount > 0) {
+                    if (searchStats) {
+                        matchCountSpan.textContent = matchCount;
+                        searchStats.style.display = 'block';
+                    }
+                    if (searchNavigation) searchNavigation.style.display = 'flex';
+                    currentMatchIndex = 0;
+                    highlightCurrentMatch();
+                } else {
+                    if (searchStats) {
+                        matchCountSpan.textContent = '0';
+                        searchStats.style.display = 'block';
+                    }
+                    if (searchNavigation) searchNavigation.style.display = 'none';
+                }
+                
+                if (clearBtn) clearBtn.style.display = searchTerm ? 'block' : 'none';
+                
+            } catch (error) {
+                console.error('Search error:', error);
+            } finally {
+                isHighlighting = false;
+            }
+        }
+        
+        // Function to highlight the current match and scroll to it
+        function highlightCurrentMatch() {
+            // Remove current highlight from all marks
+            document.querySelectorAll('.search-highlight mark').forEach(mark => {
+                mark.classList.remove('current');
+                mark.style.background = '#ffeb3b';
+                mark.style.color = '#DC0028';
+            });
+            
+            if (currentMatches.length > 0 && currentMatchIndex >= 0 && currentMatchIndex < currentMatches.length) {
+                const currentMatch = currentMatches[currentMatchIndex];
+                currentMatch.classList.add('current');
+                currentMatch.style.background = '#DC0028';
+                currentMatch.style.color = 'white';
+                
+                // Scroll to the current match
+                currentMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Update match count display
+                if (matchCountSpan) {
+                    matchCountSpan.textContent = `${currentMatchIndex + 1} of ${currentMatches.length}`;
+                }
+            } else if (currentMatches.length > 0) {
+                if (matchCountSpan) {
+                    matchCountSpan.textContent = `${currentMatches.length} matches found`;
                 }
             }
-        );
-
-        const textNodes = [];
-        while (walker.nextNode()) textNodes.push(walker.currentNode);
-
-        const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        }
         
-        textNodes.forEach(node => {
-            const text = node.nodeValue;
-            if (regex.test(text)) {
-                const span = document.createElement('span');
-                span.className = 'search-highlight';
-                span.innerHTML = text.replace(regex, '<mark style="background:#ff9800; color:#000; padding: 2px 0; border-radius: 3px; font-weight: normal;">$1</mark>');
-                node.parentNode.replaceChild(span, node);
+        // Navigate to next match
+        function nextMatch() {
+            if (currentMatches.length === 0) return;
+            
+            if (currentMatchIndex < currentMatches.length - 1) {
+                currentMatchIndex++;
+            } else {
+                currentMatchIndex = 0; // Loop back to first
+            }
+            highlightCurrentMatch();
+        }
+        
+        // Navigate to previous match
+        function prevMatch() {
+            if (currentMatches.length === 0) return;
+            
+            if (currentMatchIndex > 0) {
+                currentMatchIndex--;
+            } else {
+                currentMatchIndex = currentMatches.length - 1; // Loop to last
+            }
+            highlightCurrentMatch();
+        }
+        
+        // Clear search
+        function clearSearch() {
+            if (searchInput) {
+                searchInput.value = '';
+                clearHighlights();
+                if (clearBtn) clearBtn.style.display = 'none';
+                if (searchStats) searchStats.style.display = 'none';
+                if (searchNavigation) searchNavigation.style.display = 'none';
+                searchInput.focus();
+            }
+        }
+        
+        // Event Listeners
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                clearTimeout(debounceTimer);
+                const searchTerm = e.target.value;
+                
+                debounceTimer = setTimeout(() => {
+                    highlightText(searchTerm);
+                }, 300);
+            });
+            
+            // Keyboard shortcuts
+            searchInput.addEventListener('keydown', function(e) {
+                // Ctrl+F to focus search (browser default will still work)
+                if (e.ctrlKey && e.key === 'f') {
+                    e.preventDefault();
+                    this.focus();
+                    this.select();
+                }
+                // Enter key to go to first match
+                if (e.key === 'Enter' && currentMatches.length > 0) {
+                    e.preventDefault();
+                    if (currentMatchIndex === -1) {
+                        currentMatchIndex = 0;
+                        highlightCurrentMatch();
+                    } else {
+                        nextMatch();
+                    }
+                }
+                // Escape to clear search
+                if (e.key === 'Escape') {
+                    clearSearch();
+                }
+            });
+        }
+        
+        if (clearBtn) {
+            clearBtn.addEventListener('click', clearSearch);
+        }
+        
+        if (nextMatchBtn) {
+            nextMatchBtn.addEventListener('click', nextMatch);
+        }
+        
+        if (prevMatchBtn) {
+            prevMatchBtn.addEventListener('click', prevMatch);
+        }
+        
+        // Keyboard navigation for next/previous (when search is focused)
+        document.addEventListener('keydown', function(e) {
+            // Only handle if search input is focused
+            if (document.activeElement === searchInput && currentMatches.length > 0) {
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    nextMatch();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    prevMatch();
+                }
             }
         });
-
-        // Scroll to first match (only on first match of this search)
-        const firstMatch = document.querySelector('mark');
-        if (firstMatch && !window._scrolledToMatch) {
-            firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            window._scrolledToMatch = true;
-            setTimeout(() => { window._scrolledToMatch = false; }, 500);
-        }
-    }
-
-    // Live search with debouncing for better performance
-    searchInput.addEventListener('input', function(e) {
-        clearTimeout(debounceTimer);
-        const searchTerm = e.target.value.trim();
         
-        debounceTimer = setTimeout(() => {
-            highlightText(searchTerm);
-        }, 300); // 300ms delay for smooth typing
-    });
-
-    // Clear highlights when input is cleared
-    searchInput.addEventListener('keyup', function(e) {
-        if (e.target.value === '') {
-            clearHighlights();
-        }
-    });
+        // Optional: Add F3 key to find next match
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F3') {
+                e.preventDefault();
+                if (currentMatches.length > 0) {
+                    nextMatch();
+                } else if (searchInput && searchInput.value.trim()) {
+                    highlightText(searchInput.value.trim());
+                    setTimeout(() => nextMatch(), 100);
+                } else if (searchInput) {
+                    searchInput.focus();
+                    searchInput.select();
+                }
+            }
+            
+            // Shift+F3 for previous match
+            if (e.shiftKey && e.key === 'F3') {
+                e.preventDefault();
+                if (currentMatches.length > 0) {
+                    prevMatch();
+                }
+            }
+        });
+    })();
 </script>
 
 
