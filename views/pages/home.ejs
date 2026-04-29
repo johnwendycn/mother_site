@@ -1698,7 +1698,438 @@
     });
   })();
 </script>
+<!-- ========================================================================= -->
+<!-- CORE MODEL SECTION: Educate | Trap | Invest                               -->
+<!-- Advanced 3D FontAwesome Animations | Sci-Fi Glassmorphism | No Conflicts -->
+<!-- ========================================================================= -->
+
+<style>
+  /* ========== NAMESPACED CORE MODEL STYLES (only .ccm-* elements) ========== */
+  #ccm-core-wrapper {
+    --ccm-primary: #DC0028;
+    --ccm-glow: rgba(255, 255, 245, 0.15);
+    --ccm-dark-bg: linear-gradient(135deg, #0a0e1a 0%, #0f1322 100%);
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 24px 4rem;
+    font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Section Header */
+  .ccm-section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+  .ccm-subtitle-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(220, 0, 40, 0.12);
+    backdrop-filter: blur(8px);
+    padding: 0.5rem 1.8rem;
+    border-radius: 60px;
+    border: 1px solid rgba(220, 0, 40, 0.3);
+    margin-bottom: 1.5rem;
+  }
+  .ccm-subtitle-badge i {
+    color: #DC0028;
+    font-size: 1.2rem;
+    animation: ccm-iconPulse 1.5s infinite;
+  }
+  .ccm-subtitle-badge span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #DC0028;
+  }
+  @keyframes ccm-iconPulse {
+    0%, 100% { opacity: 0.6; transform: scale(1); text-shadow: 0 0 0 #DC0028; }
+    50% { opacity: 1; transform: scale(1.15); text-shadow: 0 0 8px #DC0028; }
+  }
+  .ccm-main-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 20%, #DC0028 60%, #ffcc00 90%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+  .ccm-title-underline {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, #DC0028, #ff6b6b, #DC0028);
+    margin: 1rem auto 0;
+    border-radius: 4px;
+    animation: ccm-underlinePulse 2s infinite;
+  }
+  @keyframes ccm-underlinePulse {
+    0%, 100% { width: 100px; opacity: 0.7; }
+    50% { width: 160px; opacity: 1; }
+  }
+
+  /* 3D Cards Grid */
+  .ccm-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  /* Individual Card - Advanced 3D Floating Effect */
+  .ccm-core-card {
+    position: relative;
+    background: rgba(15, 20, 35, 0.75);
+    backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 2rem 1.8rem;
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
+  .ccm-core-card:hover {
+    transform: translateY(-12px) rotateX(3deg) scale(1.02);
+    border-color: rgba(220, 0, 40, 0.5);
+    box-shadow: 0 30px 50px -18px rgba(220, 0, 40, 0.3), 0 0 0 1px rgba(220, 0, 40, 0.3);
+  }
+
+  /* Card Glow Effect */
+  .ccm-card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 20%, rgba(220, 0, 40, 0.1), transparent 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .ccm-core-card:hover .ccm-card-glow {
+    opacity: 1;
+  }
+
+  /* Card Icon - 3D Advanced Animation */
+  .ccm-icon-container {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    position: relative;
+  }
+  .ccm-icon-3d {
+    font-size: 4.2rem;
+    display: inline-block;
+    transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.2);
+    transform-style: preserve-3d;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.2), 0 4px 8px rgba(0,0,0,0.3);
+  }
+  /* Individual icon colors */
+  .ccm-card-educate .ccm-icon-3d { color: #4ade80; text-shadow: 0 0 12px rgba(74, 222, 128, 0.4); }
+  .ccm-card-trap .ccm-icon-3d { color: #f97316; text-shadow: 0 0 12px rgba(249, 115, 22, 0.4); }
+  .ccm-card-invest .ccm-icon-3d { color: #facc15; text-shadow: 0 0 12px rgba(250, 204, 21, 0.4); }
+  
+  .ccm-core-card:hover .ccm-icon-3d {
+    transform: translateY(-8px) rotateY(12deg) scale(1.12);
+    filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+  }
+
+  /* Card Title */
+  .ccm-card-title {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.01em;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  .ccm-card-educate .ccm-card-title { background: linear-gradient(135deg, #4ade80, #22c55e); background-clip: text; -webkit-background-clip: text; color: transparent; }
+  .ccm-card-trap .ccm-card-title { background: linear-gradient(135deg, #f97316, #ea580c); background-clip: text; -webkit-background-clip: text; color: transparent; }
+  .ccm-card-invest .ccm-card-title { background: linear-gradient(135deg, #facc15, #eab308); background-clip: text; -webkit-background-clip: text; color: transparent; }
+
+  /* Card Divider */
+  .ccm-card-divider {
+    width: 60px;
+    height: 3px;
+    margin: 0.8rem auto 1.2rem;
+    border-radius: 4px;
+    transition: width 0.3s;
+  }
+  .ccm-card-educate .ccm-card-divider { background: linear-gradient(90deg, #4ade80, #22c55e); }
+  .ccm-card-trap .ccm-card-divider { background: linear-gradient(90deg, #f97316, #ea580c); }
+  .ccm-card-invest .ccm-card-divider { background: linear-gradient(90deg, #facc15, #eab308); }
+  .ccm-core-card:hover .ccm-card-divider {
+    width: 100px;
+  }
+
+  /* Card Description */
+  .ccm-card-desc {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #e2e8f0;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  /* Key Features List (3D interactive) */
+  .ccm-feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+  .ccm-feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    transition: all 0.2s;
+  }
+  .ccm-feature-list li i {
+    width: 28px;
+    font-size: 1rem;
+    transition: transform 0.2s;
+  }
+  .ccm-card-educate .ccm-feature-list li i { color: #4ade80; }
+  .ccm-card-trap .ccm-feature-list li i { color: #f97316; }
+  .ccm-card-invest .ccm-feature-list li i { color: #facc15; }
+  .ccm-feature-list li:hover {
+    transform: translateX(8px);
+    color: white;
+  }
+  .ccm-feature-list li:hover i {
+    transform: scale(1.2) rotate(5deg);
+  }
+
+  /* Action Button */
+  .ccm-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: 1.8rem;
+    padding: 0.85rem 1.5rem;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+  }
+  .ccm-card-educate .ccm-action-btn:hover { background: #4ade80; border-color: #4ade80; color: #0a0e1a; transform: translateY(-3px); box-shadow: 0 10px 25px -8px #4ade80; }
+  .ccm-card-trap .ccm-action-btn:hover { background: #f97316; border-color: #f97316; color: #0a0e1a; transform: translateY(-3px); box-shadow: 0 10px 25px -8px #f97316; }
+  .ccm-card-invest .ccm-action-btn:hover { background: #facc15; border-color: #facc15; color: #0a0e1a; transform: translateY(-3px); box-shadow: 0 10px 25px -8px #facc15; }
+  .ccm-action-btn i {
+    transition: transform 0.2s;
+  }
+  .ccm-action-btn:hover i {
+    transform: translateX(5px);
+  }
+
+  /* Lightning Bolt Accents (white) for each card */
+  .ccm-card-lightning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: 2rem;
+    z-index: 0;
+  }
+  .ccm-mini-bolt {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.7);
+    filter: blur(1.5px) drop-shadow(0 0 5px white);
+    width: 2px;
+    border-radius: 2px;
+    animation: ccm-miniFlash 2.5s infinite ease-in-out;
+  }
+  @keyframes ccm-miniFlash {
+    0% { opacity: 0; transform: scaleY(0.5); height: 40px; }
+    20% { opacity: 1; height: 70px; }
+    60% { opacity: 0.4; height: 60px; }
+    100% { opacity: 0; transform: scaleY(0.3); height: 30px; }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    #ccm-core-wrapper { padding: 1.5rem 16px 3rem; }
+    .ccm-cards-grid { gap: 1.5rem; }
+    .ccm-core-card { padding: 1.5rem; }
+    .ccm-card-title { font-size: 1.6rem; }
+    .ccm-icon-3d { font-size: 3rem; }
+  }
+</style>
+
+<div id="ccm-core-wrapper">
+  <!-- Section Header -->
+  <div class="ccm-section-header">
+    <div class="ccm-subtitle-badge">
+      <i class="fas fa-bolt"></i>
+      <span>Compassionate Capitalism</span>
+      <i class="fas fa-cloud-sun"></i>
+    </div>
+    <h1 class="ccm-main-title">
+      Core Model
+    </h1>
+    <div class="ccm-title-underline"></div>
+    <p style="color: #94a3b8; margin-top: 1rem; font-size: 1rem; letter-spacing: 1px;">
+      Educate. Trap. Reinvest.
+    </p>
+  </div>
+
+  <!-- 3D Cards Grid -->
+  <div class="ccm-cards-grid">
+    
+    <!-- CARD 1: EDUCATE -->
+    <div class="ccm-core-card ccm-card-educate">
+      <div class="ccm-card-lightning">
+        <div class="ccm-mini-bolt" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
+        <div class="ccm-mini-bolt" style="top: 55%; left: 85%; animation-delay: 1.2s; width: 1.5px;"></div>
+        <div class="ccm-mini-bolt" style="top: 75%; left: 25%; animation-delay: 0.7s;"></div>
+      </div>
+      <div class="ccm-card-glow"></div>
+      
+      <div class="ccm-icon-container">
+        <i class="fas fa-graduation-cap ccm-icon-3d"></i>
+      </div>
+      <h3 class="ccm-card-title">Educate</h3>
+      <div class="ccm-card-divider"></div>
+      <p class="ccm-card-desc">
+        Knowledge is the foundation of development. The system provides structured access to information, skills, and economic awareness across essential sectors.
+      </p>
+      <ul class="ccm-feature-list">
+        <li><i class="fas fa-brain"></i> Financial Literacy Programs</li>
+        <li><i class="fas fa-chalkboard-user"></i> Entrepreneurial Training</li>
+        <li><i class="fas fa-globe"></i> Digital Skills Certification</li>
+        <li><i class="fas fa-book-open"></i> Economic Awareness Campaigns</li>
+      </ul>
+      <button class="ccm-action-btn">
+        Learn More <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- CARD 2: TRAP (Wealth Retention) -->
+    <div class="ccm-core-card ccm-card-trap">
+      <div class="ccm-card-lightning">
+        <div class="ccm-mini-bolt" style="top: 10%; left: 80%; animation-delay: 0.4s;"></div>
+        <div class="ccm-mini-bolt" style="top: 40%; left: 15%; animation-delay: 1.5s;"></div>
+        <div class="ccm-mini-bolt" style="top: 85%; left: 65%; animation-delay: 0.9s;"></div>
+      </div>
+      <div class="ccm-card-glow"></div>
+      
+      <div class="ccm-icon-container">
+        <i class="fas fa-chart-line ccm-icon-3d"></i>
+      </div>
+      <h3 class="ccm-card-title">Trap</h3>
+      <div class="ccm-card-divider"></div>
+      <p class="ccm-card-desc">
+        Economic growth cannot occur where wealth constantly leaves the system. This model redirects spending into a controlled ecosystem that strengthens local businesses and industries.
+      </p>
+      <ul class="ccm-feature-list">
+        <li><i class="fas fa-coins"></i> Local Currency Circulation</li>
+        <li><i class="fas fa-store"></i> Redirect Mall Ecosystem</li>
+        <li><i class="fas fa-hand-holding-usd"></i> Wealth Retention Mechanisms</li>
+        <li><i class="fas fa-industry"></i> Local Supply Chain Priority</li>
+      </ul>
+      <button class="ccm-action-btn">
+        Discover How <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- CARD 3: INVEST (Growth Cycle) -->
+    <div class="ccm-core-card ccm-card-invest">
+      <div class="ccm-card-lightning">
+        <div class="ccm-mini-bolt" style="top: 20%; left: 20%; animation-delay: 0.2s;"></div>
+        <div class="ccm-mini-bolt" style="top: 60%; left: 75%; animation-delay: 1.8s; width: 1.8px;"></div>
+        <div class="ccm-mini-bolt" style="top: 50%; left: 45%; animation-delay: 2.2s;"></div>
+      </div>
+      <div class="ccm-card-glow"></div>
+      
+      <div class="ccm-icon-container">
+        <i class="fas fa-chart-simple ccm-icon-3d"></i>
+      </div>
+      <h3 class="ccm-card-title">Invest</h3>
+      <div class="ccm-card-divider"></div>
+      <p class="ccm-card-desc">
+        Participants convert earned value into opportunities such as jobs, business ventures, and investments, creating a cycle of continuous growth.
+      </p>
+      <ul class="ccm-feature-list">
+        <li><i class="fas fa-briefcase"></i> Business Incubation</li>
+        <li><i class="fas fa-chart-line"></i> Investment Points System</li>
+        <li><i class="fas fa-users"></i> Cooperative Ownership</li>
+        <li><i class="fas fa-seedling"></i> Reinvestment Dividends</li>
+      </ul>
+      <button class="ccm-action-btn">
+        Start Investing <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Bottom Flow Text (Continuous Cycle Statement) -->
+  <div style="text-align: center; margin-top: 3.5rem; padding: 1.5rem; border-top: 1px solid rgba(220,0,40,0.2);">
+    <p style="color: #94a3b8; font-size: 0.9rem; letter-spacing: 0.5px;">
+      <i class="fas fa-sync-alt" style="color: #DC0028; margin-right: 8px;"></i>
+      A continuous cycle of empowerment: <strong style="color: #fff;">Educate → Trap → Invest → Repeat</strong>
+    </p>
+  </div>
 </div>
+
+<!-- Optional JavaScript for enhanced 3D interactivity (isolated) -->
+<script>
+  (function() {
+    // Adds a subtle tilt effect to cards based on mouse movement (3D depth)
+    const cards = document.querySelectorAll('#ccm-core-wrapper .ccm-core-card');
+    
+    cards.forEach(card => {
+      card.addEventListener('mousemove', function(e) {
+        const rect = this.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 25;
+        const rotateY = (centerX - x) / 25;
+        
+        this.style.transform = `perspective(1000px) translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = '';
+      });
+    });
+    
+    // Mini lightning flash effect on button hover
+    const btns = document.querySelectorAll('#ccm-core-wrapper .ccm-action-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('mouseenter', function() {
+        const parentCard = this.closest('.ccm-core-card');
+        if (parentCard) {
+          const bolts = parentCard.querySelectorAll('.ccm-mini-bolt');
+          bolts.forEach(bolt => {
+            bolt.style.animation = 'none';
+            setTimeout(() => { bolt.style.animation = ''; }, 50);
+          });
+        }
+      });
+    });
+  })();
+</script>
 
 <!-- History Start – fully corrected, professionally extended -->
 <div class="rs-history">
@@ -1819,6 +2250,8 @@
                 </div>
             </div>
         </div>
+</div>
+
     </div>
 </div>
 
