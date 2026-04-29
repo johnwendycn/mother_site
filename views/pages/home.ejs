@@ -731,10 +731,537 @@
     })();
 </script>
 
+
 	<!-- Breadcrumbs End -->
 		<!-- History Start -->
        <div class="rs-history sec-spacer">
     <div class="container">
+ <style>
+    
+
+    body {
+      background: #f8fafc;
+      font-family: 'Inter', 'Poppins', system-ui, -apple-system, sans-serif;
+      line-height: 1.5;
+    }
+
+    /* container utility (bootstrap-like without extra classes) */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== HERO SECTION (beautiful, animated white lightning + #DC0028) ========== */
+    .hero {
+      position: relative;
+      border-radius: 2rem;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 30%, #0c0f1c, #020308);
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(220, 0, 40, 0.3) inset;
+      margin: 2rem auto;
+    }
+
+    /* animated lightning container - white bolts */
+    .lightning-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .bolt {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.9);
+      filter: blur(1.8px) drop-shadow(0 0 6px #ffffff);
+      width: 2.5px;
+      height: 90px;
+      transform-origin: top center;
+      animation: flashWhite 1.6s infinite ease-in-out;
+      border-radius: 4px;
+    }
+
+    .bolt::before,
+    .bolt::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      filter: inherit;
+      border-radius: 4px;
+    }
+
+    /* custom bolt placements + branching */
+    .bolt:nth-child(1) { top: 8%; left: 12%; height: 130px; width: 2.8px; animation-delay: 0s; }
+    .bolt:nth-child(1)::before { top: 45px; left: -18px; width: 2px; height: 52px; transform: rotate(-28deg); opacity: 0.85; }
+    .bolt:nth-child(1)::after { top: 80px; left: 14px; width: 2px; height: 44px; transform: rotate(24deg); opacity: 0.75; }
+
+    .bolt:nth-child(2) { top: 68%; left: 78%; height: 115px; width: 2.2px; animation-delay: 0.45s; }
+    .bolt:nth-child(2)::before { top: 38px; left: -20px; width: 2px; height: 48px; transform: rotate(-32deg); opacity: 0.9; }
+    .bolt:nth-child(2)::after { top: 62px; left: 16px; width: 1.8px; height: 40px; transform: rotate(28deg); opacity: 0.8; }
+
+    .bolt:nth-child(3) { top: 25%; left: 85%; height: 120px; width: 2.5px; animation-delay: 0.9s; }
+    .bolt:nth-child(3)::before { top: 50px; left: -24px; width: 2.2px; height: 58px; transform: rotate(-38deg); opacity: 0.8; }
+    .bolt:nth-child(3)::after { top: 85px; left: 18px; width: 2px; height: 42px; transform: rotate(26deg); opacity: 0.7; }
+
+    .bolt:nth-child(4) { top: 18%; left: 48%; height: 100px; width: 2px; animation-delay: 1.2s; }
+    .bolt:nth-child(4)::before { top: 28px; left: -14px; width: 1.8px; height: 45px; transform: rotate(-30deg); }
+    .bolt:nth-child(4)::after { top: 52px; left: 12px; width: 1.8px; height: 38px; transform: rotate(22deg); }
+
+    .bolt:nth-child(5) { top: 72%; left: 22%; height: 140px; width: 2.6px; animation-delay: 0.25s; }
+    .bolt:nth-child(5)::before { top: 62px; left: -22px; width: 2px; height: 55px; transform: rotate(-34deg); }
+    .bolt:nth-child(5)::after { top: 98px; left: 15px; width: 2px; height: 42px; transform: rotate(30deg); }
+
+    .bolt:nth-child(6) { top: 45%; left: 62%; height: 108px; width: 2.2px; animation-delay: 0.7s; }
+    .bolt:nth-child(6)::before { top: 42px; left: -17px; width: 1.8px; height: 50px; transform: rotate(-25deg); }
+    .bolt:nth-child(6)::after { top: 72px; left: 13px; width: 1.8px; height: 34px; transform: rotate(20deg); }
+
+    @keyframes flashWhite {
+      0% { opacity: 0.15; transform: scaleY(0.7); filter: blur(2px); }
+      20% { opacity: 1; filter: blur(0px) drop-shadow(0 0 10px #fff); transform: scaleY(1); }
+      40% { opacity: 0.65; filter: blur(1px); transform: scaleY(0.95); }
+      60% { opacity: 1; filter: blur(0px) drop-shadow(0 0 14px #ffffff); transform: scaleY(1.05); }
+      80% { opacity: 0.3; transform: scaleY(0.85); }
+      100% { opacity: 0.15; transform: scaleY(0.7); filter: blur(2px); }
+    }
+
+    /* electric orbs */
+    .electric-orbs {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .orb {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(220,0,40,0.02) 80%);
+      border-radius: 50%;
+      filter: blur(50px);
+      animation: pulseGlow 6s infinite alternate;
+    }
+    .orb:nth-child(1) { top: -70px; left: -50px; animation-duration: 8s; }
+    .orb:nth-child(2) { bottom: 5%; right: -4%; width: 280px; height: 280px; background: radial-gradient(circle, rgba(220,0,40,0.12) 0%, rgba(255,255,255,0.02) 90%); animation-duration: 10s; }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.2; transform: scale(0.96); }
+      100% { opacity: 0.65; transform: scale(1.08); }
+    }
+
+    /* hero content */
+    .hero-content {
+      position: relative;
+      z-index: 15;
+      padding: 5rem 3rem;
+      max-width: 880px;
+      backdrop-filter: blur(1.5px);
+    }
+    .accent-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(220, 0, 40, 0.18);
+      backdrop-filter: blur(8px);
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+      border-left: 3px solid #DC0028;
+      margin-bottom: 1.8rem;
+    }
+    .badge-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #ffdce5;
+  
+    }
+    .badge-lightning {
+      font-size: 1.2rem;
+      filter: drop-shadow(0 0 4px white);
+      animation: subtleFlash 1.3s infinite;
+      color: #fff5e0;
+    }
+    @keyframes subtleFlash {
+      0% { opacity: 0.6; text-shadow: 0 0 0 white; }
+      100% { opacity: 1; text-shadow: 0 0 8px #fff; }
+    }
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.3rem;
+      background: linear-gradient(130deg, #FFFFFF 15%, #ffe9ef 65%, #DC0028 92%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .subhead {
+      font-size: clamp(0.98rem, 2.2vw, 1.25rem);
+      line-height: 1.5;
+      color: #eef2ff;
+      max-width: 680px;
+      margin-bottom: 2.5rem;
+      border-left: 3px solid #DC0028;
+      padding-left: 1.5rem;
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(4px);
+      border-radius: 0 14px 14px 0;
+      font-weight: 400;
+    }
+    .btn-primary {
+      background: #DC0028;
+      border: none;
+      padding: 0.9rem 2.2rem;
+      border-radius: 46px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 10px 20px -8px rgba(220, 0, 40, 0.5);
+   
+    }
+    .btn-primary:hover {
+      background: #a80020;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 28px -10px #DC0028;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid rgba(255, 255, 255, 0.7);
+      padding: 0.85rem 2rem;
+      border-radius: 46px;
+      font-weight: 500;
+      color: #ffffff;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: #DC0028;
+      background: rgba(220,0,40,0.2);
+      transform: translateY(-2px);
+    }
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      align-items: center;
+    }
+
+    /* ========== HISTORY SECTION (corrected, extensive & professional) ========== */
+    .rs-history {
+      position: relative;
+      padding: 80px 0;
+      background: linear-gradient(135deg, #ffffff 0%, #fef6f8 100%);
+      overflow-x: hidden;
+    }
+
+    .abt-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .history-title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #DC0028;
+      display: inline-flex;
+      align-items: center;
+      gap: 20px;
+      background: rgba(220,0,40,0.04);
+      padding: 0.5rem 2rem;
+      border-radius: 80px;
+      backdrop-filter: blur(4px);
+    }
+    .lightning-icon, .cloud-icon {
+      font-size: 2.2rem;
+      transition: all 0.2s;
+    }
+    .lightning-icon {
+      color: #ffc107;
+      filter: drop-shadow(0 0 4px #ffb347);
+      animation: iconPulse 0.8s infinite alternate;
+    }
+    .cloud-icon {
+      color: #b0bec5;
+      animation: floatCloudIcon 3s infinite ease-in-out;
+    }
+    @keyframes iconPulse {
+      0% { opacity: 0.7; transform: scale(1); text-shadow: 0 0 0px #ffeb3b; }
+      100% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 8px #ffeb3b; }
+    }
+    @keyframes floatCloudIcon {
+      0%,100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* three images row */
+    .history-images-row {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .history-image-item {
+      flex: 1;
+      min-width: 250px;
+      background: #fff;
+      border-radius: 28px;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 26px -12px rgba(0,0,0,0.12);
+    }
+    .history-image-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 36px -14px rgba(220,0,40,0.25);
+    }
+    .history-image-wrapper {
+      position: relative;
+      border-radius: 28px;
+      overflow: hidden;
+    }
+    .history-image-link img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .history-image-link:hover img {
+      transform: scale(1.05);
+    }
+    .image-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: 0.3s;
+      gap: 8px;
+    }
+    .history-image-link:hover .image-overlay {
+      opacity: 1;
+    }
+    .image-overlay i {
+      font-size: 48px;
+      color: #DC0028;
+      background: rgba(255,255,255,0.9);
+      padding: 12px;
+      border-radius: 60px;
+      box-shadow: 0 0 12px white;
+    }
+    .image-overlay span {
+      color: white;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .image-caption {
+      margin-top: 16px;
+      font-weight: 700;
+      color: #DC0028;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+
+    /* history text (justified + elegant) */
+    .history-text {
+      background: rgba(255,255,245,0.85);
+      backdrop-filter: blur(3px);
+      border-radius: 36px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.05);
+      border: 1px solid rgba(220,0,40,0.2);
+      transition: all 0.25s;
+    }
+    .history-text p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: #1e1e2a;
+      margin-bottom: 1.5rem;
+      text-align: justify;
+      text-justify: inter-word;
+      font-weight: 450;
+    }
+    .history-text p:first-of-type::first-letter {
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: #DC0028;
+      float: left;
+      margin-right: 0.8rem;
+      line-height: 0.85;
+      letter-spacing: 2px;
+      text-shadow: 0 0 6px rgba(220,0,40,0.2);
+    }
+
+    /* subtle lightning streak animations inside history (ambient) */
+    .ambient-lightning {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .light-streak {
+      position: absolute;
+      width: 2px;
+      background: rgba(255, 215, 0, 0.5);
+      filter: blur(1px);
+      height: 70px;
+      transform-origin: top;
+      animation: faintBolt 4s infinite;
+    }
+    @keyframes faintBolt {
+      0% { opacity: 0; transform: scaleY(0); }
+      20% { opacity: 0.7; transform: scaleY(1); }
+      70% { opacity: 0.2; }
+      100% { opacity: 0; transform: scaleY(0.5); }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content { padding: 3rem 1.5rem; }
+      .history-title { font-size: 1.8rem; gap: 8px; padding: 0.3rem 1rem; }
+      .lightning-icon, .cloud-icon { font-size: 1.5rem; }
+      .history-text { padding: 1.5rem; }
+      .history-text p { font-size: 0.9rem; }
+      .cta-group { flex-direction: column; align-items: flex-start; width: 100%; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+    }
+  </style>
+
+
+<!-- main content: hero integrated elegantly without extra html wrapper -->
+<section class="hero" aria-label="Hero Section: Rebuilding Africa’s Economic Power Through Compassionate Capitalism">
+  <div class="lightning-bg">
+    <div class="bolt"></div><div class="bolt"></div><div class="bolt"></div>
+    <div class="bolt"></div><div class="bolt"></div><div class="bolt"></div>
+  </div>
+  <div class="electric-orbs"><div class="orb"></div><div class="orb"></div></div>
+  <div class="hero-content">
+    <div class="accent-badge">
+      <span class="badge-lightning"><i class="fas fa-bolt"></i></span>
+      <span class="badge-text">compassionate capitalism · pan-african renaissance</span>
+      <span class="badge-lightning"><i class="fas fa-bolt"></i></span>
+    </div>
+    <h1>Rebuilding Africa’s<br>Economic Power Through<br>Compassionate Capitalism</h1>
+    <p class="subhead">A structured economic system designed to transform everyday human activity into wealth creation, shared prosperity, and sustainable development across Africa.</p>
+    <div class="cta-group">
+      <button class="btn-primary">Explore the vision →</button>
+      <button class="btn-outline">Learn compassionate model</button>
+    </div>
+  </div>
+</section>
+    <div class="rs-mission sec-spacer blackwall-street-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-12">
+                <!-- Mission -->
+                <div class="mission-card">
+                    <div class="abt-title">
+                        <h2 class="glitch-title" data-text="OUR MISSION">OUR MISSION</h2>
+                        <div class="title-underline"></div>
+                    </div>
+                    <div class="about-desc mission-text">
+                        <p>Strive to achieve global utopia through redirecting global commerce to compassion and global values to empathy.</p>
+                    </div>
+                </div>
+                
+                <!-- Philosophy -->
+                <div class="philosophy-card">
+                    <div class="abt-title">
+                        <h2 class="glitch-title" data-text="COMPASSIONATE CAPITALISM PHILOSOPHY">COMPASSIONATE CAPITALISM PHILOSOPHY</h2>
+                        <div class="title-underline"></div>
+                    </div>
+                    <div class="about-desc philosophy-text">
+                        <p>Strive to achieve global utopia through redirecting global commerce to compassion and global values to empathy.</p>
+                    </div>
+                </div>
+                
+                <!-- Vision -->
+                <div class="vision-card">
+                    <div class="abt-title">
+                        <h2 class="glitch-title" data-text="OUR VISION">OUR VISION</h2>
+                        <div class="title-underline"></div>
+                    </div>
+                    <div class="vision-desc vision-text">
+                        <p>To be the primary usher of the Kingdom of the God of Abraham on earth through the pursuit of increased access to 28 basic human needs for all the world's inhabitants.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-5 col-md-12">
+                <div class="symbolic-animation-container">
+                    <canvas id="symbolicCanvas" width="500" height="500"></canvas>
+                    <div class="memorial-text">
+                        <div class="memorial-quote">
+                            <i class="fa fa-quote-left"></i>
+                            <p>Remembering the 300 lives lost in the 1921 Tulsa Race Massacre. We rebuild, we rise, we honor.</p>
+                            <i class="fa fa-quote-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Smoke Animation Background -->
+    <canvas id="smokeCanvas"></canvas>
+</div>
+
+<!-- History Start – fully corrected, professionally extended -->
+<div class="rs-history">
+  <div class="ambient-lightning">
+    <div class="light-streak" style="top: 15%; left: 8%; animation-delay: 1s;"></div>
+    <div class="light-streak" style="top: 55%; left: 85%; animation-delay: 2.4s; height: 95px;"></div>
+    <div class="light-streak" style="top: 70%; left: 20%; animation-delay: 0.5s; width: 1.5px;"></div>
+  </div>
+  <div class="container">
+   
+    
+  
+  </div>
+</div>
+
+<!-- subtle javascript to enhance lightning micro-interactions (optional professional touch) -->
+<script>
+  (function() {
+    // adds mini lightning flash effect for the history section (ambient but not intrusive)
+    const historySection = document.querySelector('.rs-history');
+    if(historySection) {
+      function createHistoryFlash() {
+        const flashDiv = document.createElement('div');
+        flashDiv.style.position = 'fixed';
+        flashDiv.style.top = 0;
+        flashDiv.style.left = 0;
+        flashDiv.style.width = '100%';
+        flashDiv.style.height = '100%';
+        flashDiv.style.background = 'rgba(255, 235, 160, 0.05)';
+        flashDiv.style.pointerEvents = 'none';
+        flashDiv.style.zIndex = '999';
+        flashDiv.style.transition = 'opacity 0.1s ease';
+        document.body.appendChild(flashDiv);
+        setTimeout(() => { flashDiv.style.opacity = '0'; setTimeout(() => flashDiv.remove(), 200); }, 30);
+      }
+      // random faint flashes (very subtle, matches white lightning theme)
+      setInterval(() => {
+        if(Math.random() > 0.85) {
+          createHistoryFlash();
+        }
+      }, 7000);
+    }
+  })();
+</script>
+
+
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="abt-title text-center">
@@ -1284,62 +1811,7 @@
         <!-- History End -->
 
         <!-- Mission Start -->
-      <div class="rs-mission sec-spacer blackwall-street-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-md-12">
-                <!-- Mission -->
-                <div class="mission-card">
-                    <div class="abt-title">
-                        <h2 class="glitch-title" data-text="OUR MISSION">OUR MISSION</h2>
-                        <div class="title-underline"></div>
-                    </div>
-                    <div class="about-desc mission-text">
-                        <p>Strive to achieve global utopia through redirecting global commerce to compassion and global values to empathy.</p>
-                    </div>
-                </div>
-                
-                <!-- Philosophy -->
-                <div class="philosophy-card">
-                    <div class="abt-title">
-                        <h2 class="glitch-title" data-text="COMPASSIONATE CAPITALISM PHILOSOPHY">COMPASSIONATE CAPITALISM PHILOSOPHY</h2>
-                        <div class="title-underline"></div>
-                    </div>
-                    <div class="about-desc philosophy-text">
-                        <p>Strive to achieve global utopia through redirecting global commerce to compassion and global values to empathy.</p>
-                    </div>
-                </div>
-                
-                <!-- Vision -->
-                <div class="vision-card">
-                    <div class="abt-title">
-                        <h2 class="glitch-title" data-text="OUR VISION">OUR VISION</h2>
-                        <div class="title-underline"></div>
-                    </div>
-                    <div class="vision-desc vision-text">
-                        <p>To be the primary usher of the Kingdom of the God of Abraham on earth through the pursuit of increased access to 28 basic human needs for all the world's inhabitants.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-lg-5 col-md-12">
-                <div class="symbolic-animation-container">
-                    <canvas id="symbolicCanvas" width="500" height="500"></canvas>
-                    <div class="memorial-text">
-                        <div class="memorial-quote">
-                            <i class="fa fa-quote-left"></i>
-                            <p>Remembering the 300 lives lost in the 1921 Tulsa Race Massacre. We rebuild, we rise, we honor.</p>
-                            <i class="fa fa-quote-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Smoke Animation Background -->
-    <canvas id="smokeCanvas"></canvas>
-</div>
+  
 
 <style>
     /* ==================== BLACK WALL STREET SECTION - WHITE BACKGROUND ==================== */
